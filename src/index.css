@@ -10,17 +10,15 @@
   }
 
   * {
-    @apply selection:bg-ember/30 selection:text-white;
+    @apply selection:bg-white/20 selection:text-white;
   }
 
   body {
-    @apply m-0 min-h-screen bg-ink text-zinc-100 font-["Space_Grotesk",sans-serif] antialiased;
-    background-image: radial-gradient(circle at top right, rgba(249, 115, 22, 0.35), transparent 55%),
-      radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.07), transparent 60%),
-      radial-gradient(circle at 80% 80%, rgba(12, 12, 12, 0.9), rgba(8, 8, 8, 0.95));
+    @apply m-0 min-h-screen bg-black text-zinc-50 font-["Space_Grotesk",sans-serif] antialiased;
+    background-color: #000;
   }
 
   #root {
-    @apply min-h-screen;
+    min-height: 100vh;
   }
 }

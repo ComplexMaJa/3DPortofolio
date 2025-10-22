@@ -23,10 +23,15 @@ const highlightTiles = [
 
 function App() {
   return (
-    <div className="relative isolate min-h-screen overflow-hidden text-white">
+    <div className="relative isolate min-h-screen overflow-hidden bg-ink text-white">
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-transparent"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.12)_0%,rgba(255,255,255,0)_65%)]"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 opacity-60 mix-blend-screen"
+        style={{ backgroundImage: 'linear-gradient(115deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 45%, transparent 70%)' }}
       />
 
       <div className="relative mx-auto flex min-h-screen w-full max-w-6xl flex-col px-6 pb-24 pt-10 sm:px-10 lg:px-16">

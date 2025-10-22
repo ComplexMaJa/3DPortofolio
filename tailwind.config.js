@@ -3,15 +3,17 @@ const config = {
   theme: {
     extend: {
       colors: {
-        ink: '#080808',
+        ink: '#000000',
         ember: '#f97316',
+        frost: '#f5f5f5',
       },
       backgroundImage: {
         'grid-fade':
-          'radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.08) 0, rgba(255, 255, 255, 0) 60%)',
+          'radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.085) 0, rgba(255, 255, 255, 0) 60%)',
       },
       boxShadow: {
-        neon: '0 0 30px rgba(249, 115, 22, 0.45)',
+        neon: '0 0 35px rgba(255, 255, 255, 0.3)',
+        'neon-soft': '0 0 60px rgba(255, 255, 255, 0.12)',
       },
     },
   },
