@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Spline from '@splinetool/react-spline'
 import SplineErrorBoundary from './SplineErrorBoundary'
 
-const splineSceneUrl = 'https://prod.spline.design/U21R4ViVUmBUKroo/scene.splinecode'
+const splineSceneUrl = 'https://prod.spline.design/X9hQfmzehhZgmBlS/scene.splinecode'
 
 function SplineShowcase() {
   const [attempt, setAttempt] = useState(0)
