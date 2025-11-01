@@ -30,7 +30,7 @@ function HeroSection({ tiles }: HeroSectionProps) {
 
       <div className="space-y-6">
         <h1 className="text-4xl font-semibold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-6xl">
-          Shut-in since 2008
+          Web / App / Game Developer from Indonesia
         </h1>
         <p className="text-base text-white/70 sm:text-lg">
           Wsg! I'm MaJa / Bumi, i am a dev from Indonesia that is interested in web,app,and game development.
@@ -42,14 +42,14 @@ function HeroSection({ tiles }: HeroSectionProps) {
           className="group inline-flex cursor-pointer items-center gap-3 rounded-full bg-white px-6 py-3 text-sm font-semibold uppercase tracking-[0.25em] text-black transition hover:shadow-[0_0_25px_rgba(255,255,255,0.35)] focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
           to="/work"
         >
-          View Selected Work
+          View My Work
           <span className="transition group-hover:translate-x-1">→</span>
         </Link>
         <Link
           className="inline-flex cursor-pointer items-center gap-3 rounded-full border border-white/30 bg-white/10 px-6 py-3 text-sm font-semibold uppercase tracking-[0.25em] text-white transition hover:bg-white/20"
           to="/contact"
         >
-          Book a discovery call
+          Shoot me an email!
         </Link>
       </div>
 

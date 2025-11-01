@@ -46,7 +46,7 @@ const contacts: ContactChannel[] = [
                 />
             </span>
         ),
-        helper: 'Book a quick sync to align on goals, scope, and next steps.',
+        helper: 'See what projects i am working on and collaborate with me.',
         href: 'https://github.com/ComplexMaJa',
     },
     {
