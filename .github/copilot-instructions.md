@@ -40,6 +40,7 @@ Keep changes small, local, and reproducible. Prioritize performance across devic
 
 - Performance checks before submitting
   - Run `pnpm build` to ensure bundles remain lean; inspect output sizes if something grows unexpectedly.
+  - Run `pnpm lint` to ensure no linting errors.
   - Test interactions on mobile or throttled network via browser devtools to confirm smooth 3D rendering.
 
 - What not to change without confirmation
