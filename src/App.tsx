@@ -24,7 +24,7 @@ const highlightTiles = [
   },
   {
     title: 'Stack',
-    detail: 'React · TypeScript · Three.js · Spline · Tailwind',
+    detail: 'React · TypeScript · Three.js · Spline · Tailwind · HTML · CSS',
   },
 ]
 
