@@ -1,7 +1,7 @@
 function SiteFooter() {
   return (
     <footer className="mt-24 flex flex-wrap items-center justify-between gap-6 text-xs uppercase tracking-[0.35em] text-white/40">
-      <p>© 2025 Mcode Studio · Based in Jakarta</p>
+      <p>© 2025 MaJa.dev · Based in Indonesia</p>
       <div className="flex gap-5">
         <a className="transition hover:text-white/70" href="mailto:hello@mcode.design">
           Email

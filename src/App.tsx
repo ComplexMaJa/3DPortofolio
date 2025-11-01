@@ -1,27 +1,44 @@
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
+import { AnimatePresence, motion } from 'framer-motion'
+
 import HeroSection from './components/HeroSection'
 import Navbar from './components/Navbar'
 import SiteFooter from './components/SiteFooter'
 import SplineShowcase from './components/SplineShowcase'
+import AboutMe from './components/pages/AboutMe'
+import Contact from './components/pages/Contact'
+import Playground from './components/pages/Playground'
+import Work from './components/pages/Work'
 
 const navLinks = [
-  { label: 'Work', href: '#work' },
-  { label: 'Services', href: '#services' },
-  { label: 'Playground', href: '#playground' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Work', href: '/work' },
+  { label: 'About', href: '/about' },
+  { label: 'Playground', href: '/playground' },
+  { label: 'Contact', href: '/contact' },
 ]
 
 const highlightTiles = [
   {
     title: 'Experience',
-    detail: '6+ years crafting reactive interfaces and immersive product demos.',
+    detail: '2+ years of building web apps and mobile apps.',
   },
   {
     title: 'Stack',
-    detail: 'React · TypeScript · Three.js · Spline · Tailwind · WebGL',
+    detail: 'React · TypeScript · Three.js · Spline · Tailwind',
   },
 ]
 
 function App() {
+  const location = useLocation()
+
+  const pageMotion = {
+    initial: { opacity: 0, y: 32 },
+    animate: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: -24 },
+  }
+
+  const pageTransition = { duration: 0.55, ease: [0.22, 0.61, 0.36, 1] as const }
+
   return (
     <div className="relative isolate min-h-screen overflow-hidden bg-ink text-white">
       <div
@@ -37,10 +54,30 @@ function App() {
       <div className="relative mx-auto flex min-h-screen w-full max-w-6xl flex-col px-6 pb-24 pt-10 sm:px-10 lg:px-16">
         <Navbar links={navLinks} />
 
-        <main className="mt-20 flex flex-1 flex-col gap-16 lg:flex-row lg:items-stretch">
-          <HeroSection tiles={highlightTiles} />
-          <SplineShowcase />
-        </main>
+        <AnimatePresence mode="wait" initial={false}>
+          <Routes location={location} key={location.pathname}>
+            <Route
+              path="/"
+              element={
+                <motion.main
+                  className="mt-20 flex flex-1 flex-col gap-16 lg:flex-row lg:items-stretch"
+                  initial={pageMotion.initial}
+                  animate={pageMotion.animate}
+                  exit={pageMotion.exit}
+                  transition={pageTransition}
+                >
+                  <HeroSection tiles={highlightTiles} />
+                  <SplineShowcase />
+                </motion.main>
+              }
+            />
+            <Route path="/work" element={<Work />} />
+            <Route path="/about" element={<AboutMe />} />
+            <Route path="/playground" element={<Playground />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </AnimatePresence>
 
         <SiteFooter />
       </div>

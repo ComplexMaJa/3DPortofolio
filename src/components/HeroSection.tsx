@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 import SplitText from './ui/SplitText'
 
 export type HighlightTile = {
@@ -31,24 +33,24 @@ function HeroSection({ tiles }: HeroSectionProps) {
           Shut-in since 2008
         </h1>
         <p className="text-base text-white/70 sm:text-lg">
-          Me MaJa Me Code
+          Wsg! I'm MaJa / Bumi, i am a dev from Indonesia that is interested in web,app,and game development.
         </p>
       </div>
 
       <div className="flex flex-wrap items-center gap-4">
-        <a
-          className="group inline-flex items-center gap-3 rounded-full bg-white px-6 py-3 text-sm font-semibold uppercase tracking-[0.25em] text-black transition hover:shadow-[0_0_25px_rgba(255,255,255,0.35)] focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
-          href="#work"
+        <Link
+          className="group inline-flex cursor-pointer items-center gap-3 rounded-full bg-white px-6 py-3 text-sm font-semibold uppercase tracking-[0.25em] text-black transition hover:shadow-[0_0_25px_rgba(255,255,255,0.35)] focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+          to="/work"
         >
           View Selected Work
           <span className="transition group-hover:translate-x-1">→</span>
-        </a>
-        <a
-          className="inline-flex items-center gap-3 rounded-full border border-white/30 bg-white/10 px-6 py-3 text-sm font-semibold uppercase tracking-[0.25em] text-white transition hover:bg-white/20"
-          href="#contact"
+        </Link>
+        <Link
+          className="inline-flex cursor-pointer items-center gap-3 rounded-full border border-white/30 bg-white/10 px-6 py-3 text-sm font-semibold uppercase tracking-[0.25em] text-white transition hover:bg-white/20"
+          to="/contact"
         >
           Book a discovery call
-        </a>
+        </Link>
       </div>
 
       <dl className="grid gap-6 sm:grid-cols-2">

@@ -1,3 +1,5 @@
+import { Link, NavLink } from 'react-router-dom'
+
 import GooeyNav from './ui/GooeyNav'
 
 export type NavLink = {
@@ -12,23 +14,34 @@ interface NavbarProps {
 function Navbar({ links }: NavbarProps) {
   return (
     <header className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-      <a className="group inline-flex items-center gap-3" href="#home" aria-label="Navigate to home">
-        <div className="grid h-10 w-10 place-content-center rounded-full bg-white/10 transition group-hover:bg-white/20">
-          <span className="text-lg font-bold tracking-widest text-white">MJ</span>
+      <Link className="group inline-flex items-center gap-3" to="/" aria-label="Navigate to home">
+        <div className="grid h-10 w-10 place-content-center overflow-hidden rounded-full bg-white/10 transition group-hover:bg-white/20">
+          <img
+            src="https://i.redd.it/7wqxmrey0ewe1.gif"
+            alt="MJ Logo"
+            className="h-10 w-10 object-cover"
+            loading="lazy"
+          />
         </div>
         <span className="text-sm uppercase tracking-[0.35em] text-white/50 group-hover:text-white">
           Portfolio
         </span>
-      </a>
+      </Link>
 
       <div className="hidden md:block">
         <GooeyNav items={links} />
       </div>
       <nav className="flex items-center gap-6 text-sm font-medium text-white/60 md:hidden">
         {links.map(({ label, href }) => (
-          <a key={label} className="transition hover:text-white" href={href}>
+          <NavLink
+            key={label}
+            to={href}
+            className={({ isActive }) =>
+              `cursor-pointer transition hover:text-white ${isActive ? 'text-white' : ''}`
+            }
+          >
             {label}
-          </a>
+          </NavLink>
         ))}
       </nav>
 

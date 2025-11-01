@@ -1,4 +1,5 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 interface GooeyNavItem {
   label: string;
@@ -30,7 +31,12 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
   const navRef = useRef<HTMLUListElement>(null);
   const filterRef = useRef<HTMLSpanElement>(null);
   const textRef = useRef<HTMLSpanElement>(null);
-  const [activeIndex, setActiveIndex] = useState<number>(initialActiveIndex);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const currentIndexFromPath = items.findIndex(item => item.href === location.pathname);
+  const initialIndexValue = currentIndexFromPath >= 0 ? currentIndexFromPath : initialActiveIndex;
+  const [activeIndex, setActiveIndex] = useState<number>(initialIndexValue);
+  const activeIndexRef = useRef<number>(initialIndexValue);
 
   const noise = (n = 1) => n / 2 - Math.random() * n;
   const getXY = (distance: number, pointIndex: number, totalPoints: number): [number, number] => {
@@ -97,54 +103,80 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
     Object.assign(textRef.current.style, styles);
     textRef.current.innerText = element.innerText;
   };
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, index: number) => {
-    const liEl = e.currentTarget;
-    if (activeIndex === index) return;
-    setActiveIndex(index);
-    updateEffectPosition(liEl);
-    if (filterRef.current) {
-      const particles = filterRef.current.querySelectorAll('.particle');
-      particles.forEach(p => filterRef.current!.removeChild(p));
+  const resolveAnchor = (index: number) =>
+    navRef.current?.querySelectorAll('a')[index] as HTMLElement | undefined;
+
+  const clearParticles = () => {
+    if (!filterRef.current) return;
+    const particles = filterRef.current.querySelectorAll('.particle');
+    particles.forEach(particle => {
+      try {
+        filterRef.current?.removeChild(particle);
+      } catch {}
+    });
+  };
+
+  const updateActivationState = (anchor: HTMLElement, index: number, animateParticles: boolean) => {
+    if (activeIndexRef.current !== index) {
+      activeIndexRef.current = index;
+      setActiveIndex(index);
+    }
+    updateEffectPosition(anchor);
+    clearParticles();
+    if (animateParticles && filterRef.current) {
+      makeParticles(filterRef.current);
     }
     if (textRef.current) {
       textRef.current.classList.remove('active');
       void textRef.current.offsetWidth;
       textRef.current.classList.add('active');
     }
-    if (filterRef.current) {
-      makeParticles(filterRef.current);
+  };
+
+  const handleClick = (event: React.MouseEvent<HTMLAnchorElement>, index: number) => {
+    event.preventDefault();
+    const anchor = event.currentTarget;
+    updateActivationState(anchor, index, true);
+    navigate(items[index].href);
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLAnchorElement>, index: number) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      const anchor = event.currentTarget;
+      updateActivationState(anchor, index, true);
+      navigate(items[index].href);
     }
   };
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLAnchorElement>, index: number) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      const liEl = e.currentTarget.parentElement;
-      if (liEl) {
-        handleClick(
-          {
-            currentTarget: liEl
-          } as React.MouseEvent<HTMLAnchorElement>,
-          index
-        );
-      }
-    }
-  };
+
   useEffect(() => {
     if (!navRef.current || !containerRef.current) return;
-    const activeLi = navRef.current.querySelectorAll('li')[activeIndex] as HTMLElement;
-    if (activeLi) {
-      updateEffectPosition(activeLi);
+    const initialAnchor = resolveAnchor(activeIndexRef.current);
+    if (initialAnchor) {
+      updateEffectPosition(initialAnchor);
       textRef.current?.classList.add('active');
     }
     const resizeObserver = new ResizeObserver(() => {
-      const currentActiveLi = navRef.current?.querySelectorAll('li')[activeIndex] as HTMLElement;
-      if (currentActiveLi) {
-        updateEffectPosition(currentActiveLi);
+      const currentAnchor = resolveAnchor(activeIndexRef.current);
+      if (currentAnchor) {
+        updateEffectPosition(currentAnchor);
       }
     });
     resizeObserver.observe(containerRef.current);
     return () => resizeObserver.disconnect();
-  }, [activeIndex]);
+  }, []);
+
+  useEffect(() => {
+    const matchedIndex = items.findIndex(item => item.href === location.pathname);
+    if (matchedIndex < 0) {
+      return;
+    }
+    const anchor = resolveAnchor(matchedIndex);
+    if (!anchor) {
+      return;
+    }
+    updateActivationState(anchor, matchedIndex, false);
+  }, [location.pathname, items]);
 
   return (
     <>
