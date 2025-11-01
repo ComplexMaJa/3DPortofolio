@@ -1,4 +1,4 @@
-import SplitText from './SplitText'
+import SplitText from './ui/SplitText'
 
 export type HighlightTile = {
   title: string
