@@ -8,6 +8,7 @@
   "build": "tsc -b && vite build",
   "lint": "eslint .",
   "preview": "vite preview",
+  "predeploy": "pnpm run build && echo maja.web.id > dist/CNAME",
   "deploy": "gh-pages -d dist"
   },
   "dependencies": {
