@@ -8,6 +8,16 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      (function () {
+        var storedPath = sessionStorage.getItem('gh_redirect_path');
+        if (!storedPath) return;
+        sessionStorage.removeItem('gh_redirect_path');
+        var current = window.location.pathname + window.location.search + window.location.hash;
+        if (current === storedPath) return;
+        window.history.replaceState(null, '', storedPath);
+      })();
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
