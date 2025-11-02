@@ -2,22 +2,16 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/webp" href="https://media.tenor.com/eForqSVDBc4AAAAm/exploding-skull.webp" />
+    <link
+      rel="icon"
+      type="image/webp"
+      href="https://media.tenor.com/eForqSVDBc4AAAAm/exploding-skull.webp"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MaJa's Portofolio</title>
+    <title>MaJa's Portfolio</title>
   </head>
   <body>
     <div id="root"></div>
-    <script>
-      (function () {
-        var storedPath = sessionStorage.getItem('gh_redirect_path');
-        if (!storedPath) return;
-        sessionStorage.removeItem('gh_redirect_path');
-        var current = window.location.pathname + window.location.search + window.location.hash;
-        if (current === storedPath) return;
-        window.history.replaceState(null, '', storedPath);
-      })();
-    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
