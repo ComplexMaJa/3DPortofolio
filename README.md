@@ -5,7 +5,7 @@
 ![Vite](https://img.shields.io/badge/Vite%207-646CFF?style=flat-square&logo=vite)
 ![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 
-> ✨ A stunning, high-performance 3D portfolio built with **React**, **TypeScript**, and **Vite**. Experience smooth 3D rendering optimized across all devices.
+> ✨ A stunning, high-performance 3D portfolio built with **React**, **TypeScript**, and **Vite**.
 
 ---
 
@@ -21,8 +21,8 @@
 # Install dependencies
 pnpm install
 
-# Start development server with HMR
-cd react && pnpm dev
+# Start development server 
+pnpm run dev
 
 # Open http://localhost:5173 in your browser
 ```
@@ -161,14 +161,13 @@ We welcome contributions! Here's how to get started:
 
 ---
 
-## 📄 License
-
-This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
-
----
 
 ## 🌟 Show Your Support
 
-If you found this project helpful, please consider giving it a ⭐ on GitHub!
+Currently very W.I.P so expect alot more in the future!, consider ⭐'ing the repo if you found it useful :D 
 
-**Happy coding! 🚀**
+<div align="center">
+<img width="220" height="220" alt="image" src="https://media.tenor.com/xVZpEi-lU6kAAAAM/kasane-teto-teto-kasane.gif" />
+</div>
+
+
