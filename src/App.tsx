@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 
@@ -28,6 +29,14 @@ const highlightTiles = [
   },
 ]
 
+const backgroundStyles: CSSProperties = {
+  backgroundColor: '#000',
+  backgroundImage:
+    'radial-gradient(circle at top, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0) 65%), linear-gradient(115deg, rgba(255,255,255,0.036) 0%, rgba(255,255,255,0.012) 45%, rgba(0,0,0,0) 70%)',
+  backgroundBlendMode: 'screen, screen',
+  backgroundRepeat: 'no-repeat, no-repeat',
+}
+
 function App() {
   const location = useLocation()
 
@@ -40,17 +49,7 @@ function App() {
   const pageTransition = { duration: 0.55, ease: [0.22, 0.61, 0.36, 1] as const }
 
   return (
-    <div className="relative isolate min-h-screen overflow-hidden bg-ink text-white">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.12)_0%,rgba(255,255,255,0)_65%)]"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-60 mix-blend-screen"
-        style={{ backgroundImage: 'linear-gradient(115deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 45%, transparent 70%)' }}
-      />
-
+    <div className="relative isolate min-h-screen overflow-hidden text-white" style={backgroundStyles}>
       <div className="relative mx-auto flex min-h-screen w-full max-w-6xl flex-col px-6 pb-24 pt-10 sm:px-10 lg:px-16">
         <Navbar links={navLinks} />
 
