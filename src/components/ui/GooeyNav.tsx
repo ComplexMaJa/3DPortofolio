@@ -25,7 +25,7 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
   particleR = 100,
   timeVariance = 300,
   colors = [1, 2, 3, 1, 2, 3, 1, 4],
-  initialActiveIndex = 0
+  initialActiveIndex = -1
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const navRef = useRef<HTMLUListElement>(null);
@@ -89,8 +89,19 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
       }, 30);
     }
   };
+  const hideEffect = () => {
+    if (filterRef.current) {
+      filterRef.current.style.display = 'none';
+    }
+    if (textRef.current) {
+      textRef.current.style.display = 'none';
+    }
+  };
+
   const updateEffectPosition = (element: HTMLElement) => {
     if (!containerRef.current || !filterRef.current || !textRef.current) return;
+    filterRef.current.style.display = 'grid';
+    textRef.current.style.display = 'grid';
     const containerRect = containerRef.current.getBoundingClientRect();
     const pos = element.getBoundingClientRect();
     const styles = {
@@ -155,6 +166,8 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
     if (initialAnchor) {
       updateEffectPosition(initialAnchor);
       textRef.current?.classList.add('active');
+    } else {
+      hideEffect();
     }
     const resizeObserver = new ResizeObserver(() => {
       const currentAnchor = resolveAnchor(activeIndexRef.current);
@@ -169,6 +182,9 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
   useEffect(() => {
     const matchedIndex = items.findIndex(item => item.href === location.pathname);
     if (matchedIndex < 0) {
+      setActiveIndex(-1);
+      activeIndexRef.current = -1;
+      hideEffect();
       return;
     }
     const anchor = resolveAnchor(matchedIndex);
@@ -348,8 +364,8 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
             ))}
           </ul>
         </nav>
-        <span className="effect filter" ref={filterRef} />
-        <span className="effect text" ref={textRef} />
+        <span className="effect filter" ref={filterRef} style={{ display: 'none' }} />
+        <span className="effect text" ref={textRef} style={{ display: 'none' }} />
       </div>
     </>
   );

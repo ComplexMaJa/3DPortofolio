@@ -10,19 +10,16 @@ const pageTransition = { duration: 0.55, ease: [0.22, 0.61, 0.36, 1] as const }
 
 const projects = [
 	{
-		title: 'Atlas Banking Platform',
-		description: 'Redesigned the onboarding funnel and real-time analytics views for a fintech dashboard. Increased activation by 34%.',
+		title: '3DPortofolio',
+		description: 'A personal portfolio website showcasing 3D projects and interactive web experiences using React and Spline. he site you are on right now!.',
+		year: '2025',
+		link: 'https://complexmaja.github.io/3DPortofolio/',
+	},
+	{
+		title: 'Skanida Apps : Absensi',
+		description: 'Student absence app using react,expo,and typescript, i was the UI/UX for the project.',
 		year: '2024',
-	},
-	{
-		title: 'Muse XR Portfolio',
-		description: 'Built a fully interactive WebGL gallery that streams Spline scenes with progressive loading on low-powered devices.',
-		year: '2023',
-	},
-	{
-		title: 'Neon Studio Configurator',
-		description: 'Collaborated with industrial designers to craft a responsive 3D product customizer with motion-guided storytelling.',
-		year: '2022',
+		link: 'https://github.com/ComplexMaJa/Skanida-Apps-Absensi',
 	},
 ]
 
@@ -37,10 +34,9 @@ function Work() {
 		>
 			<header className="space-y-5">
 				<p className="text-xs uppercase tracking-[0.4em] text-white/40">Selected Work</p>
-				<h1 className="text-3xl font-semibold text-white sm:text-4xl">Recent collaborations and case studies</h1>
+				<h1 className="text-3xl font-semibold text-white sm:text-4xl">Projects i've worked on</h1>
 				<p className="max-w-2xl text-base text-white/60 sm:text-lg">
-					A snapshot of immersive, product-focused moments. Each engagement balances creative direction, engineered performance,
-					and an obsessive attention to detail across devices.
+					A lists of all the projects i have worked on over my 2+ years of being a developer.
 				</p>
 			</header>
 
@@ -53,9 +49,14 @@ function Work() {
 						<span className="text-xs font-semibold uppercase tracking-[0.35em] text-white/35">{project.year}</span>
 						<h2 className="text-2xl font-semibold text-white group-hover:text-white/90">{project.title}</h2>
 						<p className="text-sm text-white/60">{project.description}</p>
-						<button className="self-start rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-white/70 transition hover:bg-white/20">
-							View breakdown
-						</button>
+						<a
+							href={project.link}
+							target={project.link.startsWith('http') ? '_blank' : undefined}
+							rel={project.link.startsWith('http') ? 'noreferrer' : undefined}
+							className="self-start rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-white/70 transition hover:bg-white/20"
+						>
+							View project
+						</a>
 					</article>
 				))}
 			</div>
