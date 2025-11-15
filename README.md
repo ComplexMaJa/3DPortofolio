@@ -63,19 +63,6 @@ react/
 
 ---
 
-## 🛠️ Available Scripts
-
-Run from the `react/` directory:
-
-| Command | Description |
-|---------|-------------|
-| `pnpm dev` | 🚀 Start development server with HMR |
-| `pnpm build` | 📦 Build for production (TypeScript + Vite) |
-| `pnpm lint` | ✅ Run ESLint to check code quality |
-| `pnpm preview` | 👁️ Preview production build locally |
-
----
-
 ## 🎯 Development Workflow
 
 ### Adding a New Component
@@ -134,24 +121,9 @@ Tailwind is already configured. Just use utility classes in your JSX:
 
 ---
 
-## 💡 Best Practices
-
-✨ **Code Style**:
-- Use functional components with React Hooks
-- Keep components co-located with their styles
-- Export types explicitly for better type safety
-- Memoize expensive calculations and components
-
-🎨 **Performance**:
-- Lazy load heavy components with `React.lazy()`
-- Optimize media assets before committing
-- Minimize bundle size—bundle analysis available via build output
-
----
-
 ## 🤝 Contributing
 
-We welcome contributions! Here's how to get started:
+I welcome contributions! Here's how to get started:
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
