@@ -60,22 +60,22 @@ function TetocatAvatar() {
     const targetX = MathUtils.clamp(pointer.current.x, -1, 1)
     const targetY = MathUtils.clamp(pointer.current.y, -1, 1)
 
-    const available = state.viewport.height * 0.92
-    const desiredScale = MathUtils.clamp(available / modelHeight, 0.85, 1.6)
-    const nextScale = MathUtils.lerp(group.current.scale.x, desiredScale, 0.06)
+    const available = state.viewport.height * 0.8
+    const desiredScale = MathUtils.clamp(available / modelHeight, 0.7, 1.35)
+    const nextScale = MathUtils.lerp(group.current.scale.x, desiredScale, 0.08)
     group.current.scale.setScalar(nextScale)
 
-    group.current.rotation.y = MathUtils.lerp(group.current.rotation.y, targetX * 0.65, 0.08)
-    group.current.rotation.x = MathUtils.lerp(group.current.rotation.x, -targetY * 0.4 + 0.22, 0.08)
+    group.current.rotation.y = MathUtils.lerp(group.current.rotation.y, targetX * 0.6, 0.08)
+    group.current.rotation.x = MathUtils.lerp(group.current.rotation.x, -targetY * 0.38 + 0.18, 0.08)
 
-    const baseX = 0.65
-    const baseY = -0.38
-    group.current.position.x = MathUtils.lerp(group.current.position.x, baseX + targetX * 0.14, 0.08)
+    const baseX = 0.5
+    const baseY = -0.4
+    group.current.position.x = MathUtils.lerp(group.current.position.x, baseX + targetX * 0.12, 0.08)
     group.current.position.y = MathUtils.lerp(group.current.position.y, baseY + targetY * 0.1, 0.08)
   })
 
   return (
-    <group ref={group} position={[0.65, -0.38, 0]}>
+    <group ref={group} position={[0.5, -0.4, 0]}>
       <primitive object={cloned} dispose={null} />
     </group>
   )
@@ -89,8 +89,8 @@ function SceneLights() {
         position={[4, 6, 6]}
         intensity={1.2}
         castShadow
-        shadow-mapSize-width={1024}
-        shadow-mapSize-height={1024}
+        shadow-mapSize-width={512}
+        shadow-mapSize-height={512}
         shadow-camera-near={0.5}
         shadow-camera-far={14}
       />
@@ -100,7 +100,7 @@ function SceneLights() {
         angle={0.55}
         penumbra={0.4}
         castShadow
-        shadow-mapSize-width={1024}
+        shadow-mapSize-width={512}
         shadow-mapSize-height={1024}
       />
       <ContactShadows position={[0, -0.55, 0]} opacity={0.35} scale={4.5} blur={2.8} far={3} />
@@ -153,12 +153,15 @@ function SplineShowcase() {
   const [attempt, setAttempt] = useState(0)
 
   return (
-    <section className="relative flex flex-1 items-stretch overflow-visible">
-      <div className="relative flex w-full min-h-[clamp(420px,70vh,900px)]">
-        <PreviewErrorBoundary onReset={() => setAttempt((value) => value + 1)} key={attempt}>
+    <section
+      className="pointer-events-none absolute right-0 top-1/2 z-0 -translate-y-1/2"
+      aria-hidden
+    >
+      <PreviewErrorBoundary onReset={() => setAttempt((value) => value + 1)} key={attempt}>
+        <div className="relative h-[min(80vh,760px)] w-[min(42vw,520px)] min-w-[240px]">
           <Canvas
-            className="absolute inset-y-0 right-0 h-full w-[min(55vw,640px)]"
-            camera={{ position: [0.4, 1.2, 4.2], fov: 32 }}
+            className="pointer-events-none absolute inset-0 h-full w-full"
+            camera={{ position: [0.25, 1.05, 4.6], fov: 95 }}
             dpr={[1, 2]}
             shadows
             onCreated={({ gl }: { gl: WebGLRenderer }) => {
@@ -170,13 +173,13 @@ function SplineShowcase() {
               <SceneLights />
             </Suspense>
           </Canvas>
-        </PreviewErrorBoundary>
-      </div>
 
-      <div className="pointer-events-none absolute bottom-6 right-6 flex flex-col items-end gap-2 text-xs uppercase tracking-[0.25em] text-white/60">
-        <span className="text-[0.65rem] text-white/80">Signature Front-End &amp; 3D Web</span>
-        <span className="text-white/50">Craft · Integrate · Iterate · 2025</span>
-      </div>
+          <div className="pointer-events-none absolute bottom-4 right-4 flex flex-col items-end gap-2 text-[0.6rem] uppercase tracking-[0.25em] text-white/60">
+            <span className="text-white/80">Signature Front-End &amp; 3D Web</span>
+            <span className="text-white/50">Craft · Integrate · Iterate · 2025</span>
+          </div>
+        </div>
+      </PreviewErrorBoundary>
     </section>
   )
 }
