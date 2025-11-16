@@ -13,8 +13,8 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
+    "@react-three/drei": "^9.121.2",
     "@react-three/fiber": "^9.4.0",
-    "@splinetool/react-spline": "^4.1.0",
     "@types/three": "^0.181.0",
     "framer-motion": "^12.23.24",
     "gsap": "^3.13.0",
@@ -22,7 +22,8 @@
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-router-dom": "^7.9.5",
-    "react-scroll": "^1.9.3"
+    "react-scroll": "^1.9.3",
+    "three": "^0.171.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",

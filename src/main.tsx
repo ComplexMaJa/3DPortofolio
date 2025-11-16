@@ -9,3 +9,20 @@ createRoot(document.getElementById('root')!).render(
     <App />
   </HashRouter>
 )
+
+const scheduleTetocatWarmup = () => {
+  import('./components/3DTeto.tsx').then((module) => {
+    module.preloadTetocat?.()
+  })
+}
+
+if (typeof window !== 'undefined') {
+  const globalWindow = window as Window &
+    typeof globalThis & { requestIdleCallback?: (callback: IdleRequestCallback) => number }
+
+  if (typeof globalWindow.requestIdleCallback === 'function') {
+    globalWindow.requestIdleCallback(() => scheduleTetocatWarmup())
+  } else {
+    globalWindow.setTimeout(() => scheduleTetocatWarmup(), 200)
+  }
+}

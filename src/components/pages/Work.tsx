@@ -19,7 +19,7 @@ const projects = [
 		title: 'Skanida Apps : Absensi',
 		description: 'Student absence app using react,expo,and typescript, i was the UI/UX for the project.',
 		year: '2024',
-		link: 'https://github.com/ComplexMaJa/Skanida-Apps-Absensi',
+		link: 'private repo lmao',
 	},
 ]
 
