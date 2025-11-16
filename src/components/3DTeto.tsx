@@ -65,7 +65,7 @@ function TetocatAvatar() {
     const targetY = MathUtils.clamp(pointer.current.y, -1, 1)
 
     const available = state.viewport.height * 0.8
-    const desiredScale = MathUtils.clamp(available / modelHeight, 0.8, 1)
+    const desiredScale = MathUtils.clamp(available / modelHeight, 0.8, 0.8)
     const nextScale = MathUtils.lerp(group.current.scale.x, desiredScale, 0.08)
     group.current.scale.setScalar(nextScale)
 
