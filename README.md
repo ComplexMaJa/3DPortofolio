@@ -1,4 +1,8 @@
-# 🎨 3D Portfolio
+<img width="1901" height="920" alt="image" src="https://github.com/user-attachments/assets/2d63b30a-1f9b-4bf5-952a-5114bbf98d4c" />
+
+
+
+ ## 🎨 3D Portfolio
 
 ![TypeScript](https://img.shields.io/badge/TypeScript-96.9%25-3178C6?style=flat-square&logo=typescript)
 ![React](https://img.shields.io/badge/React%2019-61DAFB?style=flat-square&logo=react)
