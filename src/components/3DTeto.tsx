@@ -166,7 +166,7 @@ function SplineShowcase() {
           <Canvas
             className="pointer-events-none absolute inset-0 h-full w-full"
             camera={{ position: [0.1, 0.95, 4.2], fov: 50 }}
-            dpr={[1, 2]}
+            dpr={[1, 1.5]}
             shadows
             onCreated={({ gl }: { gl: WebGLRenderer }) => {
               gl.setClearColor('#000000', 0)
