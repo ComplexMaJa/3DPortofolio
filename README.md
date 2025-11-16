@@ -42,7 +42,6 @@ cd react && pnpm build
 ## ✨ Features
 
 - 🎯 **High Performance** – Optimized bundle size, fast HMR with SWC
-- 📱 **Mobile Responsive** – Smooth 3D rendering on all devices
 - ⚡ **Modern Stack** – React 19, TypeScript, Vite 7 with SWC plugin
 - 🎨 **Tailwind CSS** – Beautiful, utility-first styling
 - 🔍 **Type-Safe** – Strict TypeScript configuration
