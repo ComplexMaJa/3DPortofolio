@@ -18,7 +18,7 @@ type FrameState = {
 function LoadingOverlay() {
   return (
     <Html center>
-      <div className="bg-black/70 px-6 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-white/70">
+      <div className="animate-pulse bg-black/70 px-6 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-white/70 backdrop-blur-sm transition-opacity duration-500">
         Loading 3D preview…
       </div>
     </Html>
