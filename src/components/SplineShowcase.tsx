@@ -5,6 +5,10 @@ import { Box3, MathUtils, Mesh, Vector3, type Group, type Object3D, type WebGLRe
 
 const modelUrl = `${import.meta.env.BASE_URL}tetocat.glb`
 
+export const preloadTetocat = () => {
+  useGLTF.preload(modelUrl, true)
+}
+
 type FrameState = {
   viewport: {
     height: number
@@ -61,21 +65,21 @@ function TetocatAvatar() {
     const targetY = MathUtils.clamp(pointer.current.y, -1, 1)
 
     const available = state.viewport.height * 0.8
-    const desiredScale = MathUtils.clamp(available / modelHeight, 0.7, 1.35)
+    const desiredScale = MathUtils.clamp(available / modelHeight, 0.8, 1)
     const nextScale = MathUtils.lerp(group.current.scale.x, desiredScale, 0.08)
     group.current.scale.setScalar(nextScale)
 
-    group.current.rotation.y = MathUtils.lerp(group.current.rotation.y, targetX * 0.6, 0.08)
-    group.current.rotation.x = MathUtils.lerp(group.current.rotation.x, -targetY * 0.38 + 0.18, 0.08)
+    group.current.rotation.y = MathUtils.lerp(group.current.rotation.y, targetX * 0.5, 0.08)
+    group.current.rotation.x = MathUtils.lerp(group.current.rotation.x, -targetY * 0.5 + 0.15, 0.08)
 
-    const baseX = 0.5
-    const baseY = -0.4
-    group.current.position.x = MathUtils.lerp(group.current.position.x, baseX + targetX * 0.12, 0.08)
-    group.current.position.y = MathUtils.lerp(group.current.position.y, baseY + targetY * 0.1, 0.08)
+    const baseX = 0
+    const baseY = -0.7
+    group.current.position.x = MathUtils.lerp(group.current.position.x, baseX + targetX * 0.08, 0.08)
+    group.current.position.y = MathUtils.lerp(group.current.position.y, baseY + targetY * 0.08, 0.08)
   })
 
   return (
-    <group ref={group} position={[0.5, -0.4, 0]}>
+    <group ref={group} position={[0.2, -0.4, 0]}>
       <primitive object={cloned} dispose={null} />
     </group>
   )
@@ -158,10 +162,10 @@ function SplineShowcase() {
       aria-hidden
     >
       <PreviewErrorBoundary onReset={() => setAttempt((value) => value + 1)} key={attempt}>
-        <div className="relative h-[min(80vh,760px)] w-[min(42vw,520px)] min-w-[240px]">
+        <div className="relative h-[min(80vh,700px)] w-[min(48vw,600px)] min-w-[280px]">
           <Canvas
             className="pointer-events-none absolute inset-0 h-full w-full"
-            camera={{ position: [0.25, 1.05, 4.6], fov: 95 }}
+            camera={{ position: [0.1, 0.95, 4.2], fov: 50 }}
             dpr={[1, 2]}
             shadows
             onCreated={({ gl }: { gl: WebGLRenderer }) => {
@@ -174,8 +178,8 @@ function SplineShowcase() {
             </Suspense>
           </Canvas>
 
-          <div className="pointer-events-none absolute bottom-4 right-4 flex flex-col items-end gap-2 text-[0.6rem] uppercase tracking-[0.25em] text-white/60">
-            <span className="text-white/80">Signature Front-End &amp; 3D Web</span>
+          <div className="pointer-events-none absolute bottom-6 right-4 flex flex-col items-end gap-2 text-[0.6rem] uppercase tracking-[0.25em] text-white/60">
+            <span className="text-white/80">Teto teto san &amp; 3D Web</span>
             <span className="text-white/50">Craft · Integrate · Iterate · 2025</span>
           </div>
         </div>
@@ -184,6 +188,6 @@ function SplineShowcase() {
   )
 }
 
-useGLTF.preload(modelUrl, true)
+preloadTetocat()
 
 export default SplineShowcase
