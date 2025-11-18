@@ -11,7 +11,7 @@ const pageTransition = { duration: 0.55, ease: [0.22, 0.61, 0.36, 1] as const }
 const projects = [
 	{
 		title: '3DPortofolio',
-		description: 'A personal portfolio website showcasing 3D projects and interactive web experiences using React and Spline. he site you are on right now!.',
+		description: 'A personal portfolio website showcasing 3D projects and interactive web experiences using React and Spline. The site you are on right now!.',
 		year: '2025',
 		link: 'https://complexmaja.github.io/3DPortofolio/',
 	},
