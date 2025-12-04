@@ -1,13 +1,9 @@
-import { Component, Suspense, useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from 'react'
+import { Component, Suspense, useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode, memo } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { ContactShadows, Environment, Html, useGLTF } from '@react-three/drei'
 import { Box3, MathUtils, Mesh, Vector3, type Group, type Object3D, type WebGLRenderer } from 'three'
 
 const modelUrl = `${import.meta.env.BASE_URL}tetocat.glb`
-
-export const preloadTetocat = () => {
-  useGLTF.preload(modelUrl, true)
-}
 
 type FrameState = {
   viewport: {
@@ -25,7 +21,7 @@ function LoadingOverlay() {
   )
 }
 
-function TetocatAvatar() {
+const TetocatAvatar = memo(function TetocatAvatar() {
   const group = useRef<Group>(null)
   const pointer = useRef({ x: 0, y: 0 })
   const { scene } = useGLTF(modelUrl, true)
@@ -83,7 +79,7 @@ function TetocatAvatar() {
       <primitive object={cloned} dispose={null} />
     </group>
   )
-}
+})
 
 function SceneLights() {
   return (
@@ -93,8 +89,8 @@ function SceneLights() {
         position={[4, 6, 6]}
         intensity={1.2}
         castShadow
-        shadow-mapSize-width={512}
-        shadow-mapSize-height={512}
+        shadow-mapSize-width={256}
+        shadow-mapSize-height={256}
         shadow-camera-near={0.5}
         shadow-camera-far={14}
       />
@@ -104,8 +100,8 @@ function SceneLights() {
         angle={0.55}
         penumbra={0.4}
         castShadow
-        shadow-mapSize-width={512}
-        shadow-mapSize-height={1024}
+        shadow-mapSize-width={256}
+        shadow-mapSize-height={512}
       />
       <ContactShadows position={[0, -0.55, 0]} opacity={0.35} scale={4.5} blur={2.8} far={3} />
       <Environment preset="city" />
@@ -167,7 +163,10 @@ function SplineShowcase() {
             className="pointer-events-none absolute inset-0 h-full w-full"
             camera={{ position: [0.1, 0.95, 4.2], fov: 50 }}
             dpr={[1, 1.5]}
-            shadows
+            shadows="soft"
+            frameloop="demand"
+            performance={{ min: 0.5 }}
+            gl={{ powerPreference: 'high-performance' }}
             onCreated={({ gl }: { gl: WebGLRenderer }) => {
               gl.setClearColor('#000000', 0)
             }}
@@ -187,7 +186,5 @@ function SplineShowcase() {
     </section>
   )
 }
-
-preloadTetocat()
 
 export default SplineShowcase

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 interface GooeyNavItem {
@@ -83,8 +83,12 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
         });
         setTimeout(() => {
           try {
-            element.removeChild(particle);
-          } catch {}
+            if (element && element.contains(particle)) {
+              element.removeChild(particle);
+            }
+          } catch {
+            // Particle already removed
+          }
         }, t);
       }, 30);
     }
@@ -122,12 +126,16 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
     const particles = filterRef.current.querySelectorAll('.particle');
     particles.forEach(particle => {
       try {
-        filterRef.current?.removeChild(particle);
-      } catch {}
+        if (filterRef.current && filterRef.current.contains(particle)) {
+          filterRef.current.removeChild(particle);
+        }
+      } catch {
+        // Particle already removed
+      }
     });
   };
 
-  const updateActivationState = (anchor: HTMLElement, index: number, animateParticles: boolean) => {
+  const updateActivationState = useCallback((anchor: HTMLElement, index: number, animateParticles: boolean) => {
     if (activeIndexRef.current !== index) {
       activeIndexRef.current = index;
       setActiveIndex(index);
@@ -142,7 +150,9 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
       void textRef.current.offsetWidth;
       textRef.current.classList.add('active');
     }
-  };
+  // makeParticles and other helper functions don't change across renders
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleClick = (event: React.MouseEvent<HTMLAnchorElement>, index: number) => {
     event.preventDefault();
@@ -192,7 +202,7 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
       return;
     }
     updateActivationState(anchor, matchedIndex, false);
-  }, [location.pathname, items]);
+  }, [location.pathname, items, updateActivationState]);
 
   return (
     <>

@@ -1,15 +1,18 @@
 import type { CSSProperties } from 'react'
+import { lazy, Suspense } from 'react'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 
 import HeroSection from './components/HeroSection'
 import Navbar from './components/Navbar'
 import SiteFooter from './components/SiteFooter'
-import SplineShowcase from './components/3DTeto'
-import AboutMe from './components/pages/AboutMe'
-import Contact from './components/pages/Contact'
-import Playground from './components/pages/Playground'
-import Work from './components/pages/Work'
+
+// Lazy load heavy components
+const SplineShowcase = lazy(() => import('./components/3DTeto'))
+const AboutMe = lazy(() => import('./components/pages/AboutMe'))
+const Contact = lazy(() => import('./components/pages/Contact'))
+const Playground = lazy(() => import('./components/pages/Playground'))
+const Work = lazy(() => import('./components/pages/Work'))
 
 const navLinks = [
   { label: 'Work', href: '/work' },
@@ -66,14 +69,44 @@ function App() {
                   transition={pageTransition}
                 >
                   <HeroSection tiles={highlightTiles} />
-                  <SplineShowcase />
+                  <Suspense fallback={<div className="flex items-center justify-center flex-1 text-sm text-white/50">Loading...</div>}>
+                    <SplineShowcase />
+                  </Suspense>
                 </motion.main>
               }
             />
-            <Route path="/work" element={<Work />} />
-            <Route path="/about" element={<AboutMe />} />
-            <Route path="/playground" element={<Playground />} />
-            <Route path="/contact" element={<Contact />} />
+            <Route
+              path="/work"
+              element={
+                <Suspense fallback={<div className="mt-20 flex items-center justify-center flex-1 text-sm text-white/50">Loading...</div>}>
+                  <Work />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/about"
+              element={
+                <Suspense fallback={<div className="mt-20 flex items-center justify-center flex-1 text-sm text-white/50">Loading...</div>}>
+                  <AboutMe />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/playground"
+              element={
+                <Suspense fallback={<div className="mt-20 flex items-center justify-center flex-1 text-sm text-white/50">Loading...</div>}>
+                  <Playground />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/contact"
+              element={
+                <Suspense fallback={<div className="mt-20 flex items-center justify-center flex-1 text-sm text-white/50">Loading...</div>}>
+                  <Contact />
+                </Suspense>
+              }
+            />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </AnimatePresence>

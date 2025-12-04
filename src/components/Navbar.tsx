@@ -1,4 +1,5 @@
 import { Link, NavLink } from 'react-router-dom'
+import { memo } from 'react'
 
 import GooeyNav from './ui/GooeyNav'
 
@@ -11,7 +12,7 @@ interface NavbarProps {
   links: NavLink[]
 }
 
-function Navbar({ links }: NavbarProps) {
+const Navbar = memo(function Navbar({ links }: NavbarProps) {
   return (
     <header className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
       <Link className="group inline-flex items-center gap-3" to="/" aria-label="Navigate to home">
@@ -20,7 +21,10 @@ function Navbar({ links }: NavbarProps) {
             src="https://i.redd.it/7wqxmrey0ewe1.gif"
             alt="MJ Logo"
             className="h-10 w-10 object-cover"
-            loading="lazy"
+            loading="eager"
+            decoding="async"
+            width="40"
+            height="40"
           />
         </div>
         <span className="text-sm uppercase tracking-[0.35em] text-white/50 group-hover:text-white">
@@ -50,6 +54,6 @@ function Navbar({ links }: NavbarProps) {
       </button>
     </header>
   )
-}
+})
 
 export default Navbar

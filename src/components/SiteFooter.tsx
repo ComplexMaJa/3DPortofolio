@@ -1,4 +1,5 @@
 import type { SVGProps } from 'react'
+import { memo } from 'react'
 
 type IconProps = SVGProps<SVGSVGElement>
 
@@ -45,7 +46,7 @@ const links = [
   },
 ]
 
-function SiteFooter() {
+const SiteFooter = memo(function SiteFooter() {
   return (
     <footer className="mt-24 flex flex-wrap items-center justify-between gap-6 text-xs uppercase tracking-[0.35em] text-white/40">
       <p>© 2025 MaJa.dev · Based in Indonesia</p>
@@ -67,6 +68,6 @@ function SiteFooter() {
       </div>
     </footer>
   )
-}
+})
 
 export default SiteFooter

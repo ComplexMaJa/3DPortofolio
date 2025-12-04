@@ -11,7 +11,7 @@ createRoot(document.getElementById('root')!).render(
 )
 
 const scheduleTetocatWarmup = () => {
-  import('./components/3DTeto.tsx').then((module) => {
+  import('./components/preload3D.ts').then((module) => {
     module.preloadTetocat?.()
   })
 }
