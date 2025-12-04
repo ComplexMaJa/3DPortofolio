@@ -89,8 +89,8 @@ function SceneLights() {
         position={[4, 6, 6]}
         intensity={1.2}
         castShadow
-        shadow-mapSize-width={256}
-        shadow-mapSize-height={256}
+        shadow-mapSize-width={512}
+        shadow-mapSize-height={512}
         shadow-camera-near={0.5}
         shadow-camera-far={14}
       />
@@ -100,8 +100,8 @@ function SceneLights() {
         angle={0.55}
         penumbra={0.4}
         castShadow
-        shadow-mapSize-width={256}
-        shadow-mapSize-height={512}
+        shadow-mapSize-width={512}
+        shadow-mapSize-height={1024}
       />
       <ContactShadows position={[0, -0.55, 0]} opacity={0.35} scale={4.5} blur={2.8} far={3} />
       <Environment preset="city" />
@@ -163,11 +163,7 @@ function SplineShowcase() {
             className="pointer-events-none absolute inset-0 h-full w-full"
             camera={{ position: [0.1, 0.95, 4.2], fov: 50 }}
             dpr={[1, 1.5]}
-            shadows="soft"
-            frameloop="demand"
-            performance={{ min: 0.5 }}
-            gl={{ powerPreference: 'high-performance' }}
-            flat
+            shadows
             onCreated={({ gl }: { gl: WebGLRenderer }) => {
               gl.setClearColor('#000000', 0)
             }}
