@@ -167,6 +167,7 @@ function SplineShowcase() {
             frameloop="demand"
             performance={{ min: 0.5 }}
             gl={{ powerPreference: 'high-performance' }}
+            flat
             onCreated={({ gl }: { gl: WebGLRenderer }) => {
               gl.setClearColor('#000000', 0)
             }}

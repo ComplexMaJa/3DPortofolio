@@ -150,7 +150,8 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
       void textRef.current.offsetWidth;
       textRef.current.classList.add('active');
     }
-  // makeParticles and other helper functions don't change across renders
+  // All functions (updateEffectPosition, clearParticles, makeParticles) and refs are stable
+  // They're defined in the same component scope and don't change across renders
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
