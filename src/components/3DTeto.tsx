@@ -1,13 +1,9 @@
-import { Component, Suspense, useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from 'react'
+import { Component, Suspense, useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode, memo } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { ContactShadows, Environment, Html, useGLTF } from '@react-three/drei'
 import { Box3, MathUtils, Mesh, Vector3, type Group, type Object3D, type WebGLRenderer } from 'three'
 
 const modelUrl = `${import.meta.env.BASE_URL}tetocat.glb`
-
-export const preloadTetocat = () => {
-  useGLTF.preload(modelUrl, true)
-}
 
 type FrameState = {
   viewport: {
@@ -25,7 +21,7 @@ function LoadingOverlay() {
   )
 }
 
-function TetocatAvatar() {
+const TetocatAvatar = memo(function TetocatAvatar() {
   const group = useRef<Group>(null)
   const pointer = useRef({ x: 0, y: 0 })
   const { scene } = useGLTF(modelUrl, true)
@@ -83,7 +79,7 @@ function TetocatAvatar() {
       <primitive object={cloned} dispose={null} />
     </group>
   )
-}
+})
 
 function SceneLights() {
   return (
@@ -187,7 +183,5 @@ function SplineShowcase() {
     </section>
   )
 }
-
-preloadTetocat()
 
 export default SplineShowcase

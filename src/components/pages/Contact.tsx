@@ -28,6 +28,9 @@ const contacts: ContactChannel[] = [
                     src="https://media.tenor.com/Ib_8vbFkAXsAAAAm/verifiedwhite.webp"
                     alt="Verified badge"
                     className="h-4 w-4"
+                    loading="lazy"
+                    width="16"
+                    height="16"
                 />
             </span>
         ),
@@ -43,6 +46,9 @@ const contacts: ContactChannel[] = [
                     src="https://media.tenor.com/Ib_8vbFkAXsAAAAm/verifiedwhite.webp"
                     alt="Verified badge"
                     className="h-4 w-4"
+                    loading="lazy"
+                    width="16"
+                    height="16"
                 />
             </span>
         ),
@@ -58,6 +64,9 @@ const contacts: ContactChannel[] = [
                     src="https://media.tenor.com/Ib_8vbFkAXsAAAAm/verifiedwhite.webp"
                     alt="Verified badge"
                     className="h-4 w-4"
+                    loading="lazy"
+                    width="16"
+                    height="16"
                 />
             </span>
         ),

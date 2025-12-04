@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { memo } from 'react'
 
 import SplitText from './ui/SplitText'
 
@@ -11,7 +12,7 @@ interface HeroSectionProps {
   tiles: HighlightTile[]
 }
 
-function HeroSection({ tiles }: HeroSectionProps) {
+const HeroSection = memo(function HeroSection({ tiles }: HeroSectionProps) {
   return (
     <section className="z-10 flex max-w-xl flex-col gap-10">
       <SplitText
@@ -63,6 +64,6 @@ function HeroSection({ tiles }: HeroSectionProps) {
       </dl>
     </section>
   )
-}
+})
 
 export default HeroSection
