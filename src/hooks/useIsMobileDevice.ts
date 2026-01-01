@@ -15,16 +15,16 @@ function useIsMobileDevice(breakpoint = 768) {
   const [isMobile, setIsMobile] = useState(() => computeIsMobile(breakpoint))
 
   useEffect(() => {
+    if (typeof window === 'undefined') return
+
     const handleChange = () => setIsMobile(computeIsMobile(breakpoint))
     const mediaQuery = window.matchMedia(`(max-width: ${breakpoint}px)`)
 
     handleChange()
     mediaQuery.addEventListener('change', handleChange)
-    window.addEventListener('resize', handleChange)
 
     return () => {
       mediaQuery.removeEventListener('change', handleChange)
-      window.removeEventListener('resize', handleChange)
     }
   }, [breakpoint])
 

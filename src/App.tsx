@@ -75,7 +75,7 @@ function App() {
                     <div className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-lg shadow-emerald-500/10">
                       <p className="text-[0.72rem] font-semibold uppercase tracking-[0.4em] text-white/50">Mobile-first</p>
                       <h1 className="mt-3 text-3xl font-semibold leading-[1.1] text-white">
-                        Fast, touch-friendly portfolio for Android &amp; mobile.
+                        Fast, touch-friendly portfolio for Android & mobile.
                       </h1>
                       <p className="mt-3 text-sm text-white/70">
                         Optimized navigation, lightweight media, and instant content—no heavy 3D on phones.
@@ -100,7 +100,7 @@ function App() {
                         <div className="grid h-12 w-12 place-content-center rounded-2xl bg-white/15 text-xl">🎯</div>
                         <div className="space-y-1">
                           <p className="text-xs font-semibold uppercase tracking-[0.35em] text-white/50">3D disabled on mobile</p>
-                          <p className="text-sm text-white/80">Smooth scrolling &amp; low battery usage guaranteed.</p>
+                          <p className="text-sm text-white/80">Smooth scrolling & low battery usage guaranteed.</p>
                         </div>
                       </div>
                       <div className="flex flex-col gap-3 rounded-2xl border border-white/10 bg-black/40 p-4 sm:flex-row sm:items-center">
