@@ -73,7 +73,7 @@ function App() {
                     transition={pageTransition}
                   >
                     <div className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-lg shadow-emerald-500/10">
-                      <p className="text-[0.72rem] font-semibold uppercase tracking-[0.4em] text-white/50">Mobile-first</p>
+                      <p className="text-xs font-semibold uppercase tracking-[0.4em] text-white/50">Mobile-first</p>
                       <h1 className="mt-3 text-3xl font-semibold leading-[1.1] text-white">
                         Fast, touch-friendly portfolio for Android & mobile.
                       </h1>
@@ -89,7 +89,7 @@ function App() {
                           className="flex items-center justify-between rounded-2xl border border-white/15 bg-white/5 px-5 py-4 text-left text-base font-semibold text-white/90 transition hover:border-white/30 hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
                           to={href}
                         >
-                          <span className="uppercase tracking-[0.28em] text-xs">{label}</span>
+                          <span className="uppercase tracking-[0.25em] text-xs">{label}</span>
                           <span aria-hidden className="text-lg">→</span>
                         </Link>
                       ))}

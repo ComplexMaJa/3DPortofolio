@@ -20,7 +20,6 @@ function useIsMobileDevice(breakpoint = 768) {
     const handleChange = () => setIsMobile(computeIsMobile(breakpoint))
     const mediaQuery = window.matchMedia(`(max-width: ${breakpoint}px)`)
 
-    handleChange()
     mediaQuery.addEventListener('change', handleChange)
 
     return () => {
