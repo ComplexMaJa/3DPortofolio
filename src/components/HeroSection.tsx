@@ -31,7 +31,7 @@ const HeroSection = memo(function HeroSection({ tiles }: HeroSectionProps) {
 
       <div className="space-y-6">
         <h1 className="text-4xl font-semibold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-6xl">
-          Web / App / Game Developer from Indonesia
+          Web / App / Game Developer from Indonesia 🇮🇩
         </h1>
         <p className="text-base text-white/70 sm:text-lg">
           Wsg! I'm MaJa / Bumi, i am a dev from Indonesia that is interested in web,app,and game development.
