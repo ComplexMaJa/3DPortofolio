@@ -66,67 +66,57 @@ function App() {
               element={
                 isMobile ? (
                   <motion.main
-                    className="mt-14 flex flex-1 flex-col gap-8"
+                    className="mt-14 flex flex-1 flex-col gap-6"
                     initial={pageMotion.initial}
                     animate={pageMotion.animate}
                     exit={pageMotion.exit}
                     transition={pageTransition}
                   >
-                    <div className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-lg shadow-emerald-500/10">
-                      <p className="text-xs font-semibold uppercase tracking-[0.4em] text-white/50">Mobile-first</p>
-                      <h1 className="mt-3 text-3xl font-semibold leading-[1.1] text-white">
-                        Fast, touch-friendly portfolio for Android & mobile.
+                    <div className="flex flex-col gap-4">
+                      <h1 className="text-4xl font-bold leading-tight text-white">
+                        Web / App / Game Developer from Indonesia 🇮🇩
                       </h1>
-                      <p className="mt-3 text-sm text-white/70">
-                        Optimized navigation, lightweight media, and instant content—no heavy 3D on phones.
+
+                      <p className="text-sm text-white/60 leading-relaxed">
+                        Wsg! I'm MaJa / Bumi, i am a dev from Indonesia that is interested in web, app, and game development.
                       </p>
                     </div>
 
-                    <section className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                    <div className="flex justify-center py-6">
+                      <div className="relative h-64 w-64 overflow-hidden rounded-full border-4 border-white/5 shadow-2xl shadow-emerald-500/10">
+                        <img
+                          src={fallbackPreview}
+                          alt="Teto"
+                          className="h-full w-full object-cover"
+                        />
+                      </div>
+                    </div>
+
+                    <nav className="grid grid-cols-2 gap-3">
                       {navLinks.map(({ label, href }) => (
                         <Link
                           key={label}
-                          className="flex items-center justify-between rounded-2xl border border-white/15 bg-white/5 px-5 py-4 text-left text-base font-semibold text-white/90 transition hover:border-white/30 hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
                           to={href}
+                          className="group flex flex-col justify-between rounded-2xl bg-white/5 p-5 transition active:scale-95 active:bg-white/10 border border-white/5 hover:border-white/10"
                         >
-                          <span className="uppercase tracking-[0.25em] text-xs">{label}</span>
-                          <span aria-hidden className="text-lg">→</span>
+                          <span className="text-2xl mb-2 opacity-80 group-hover:scale-110 transition-transform duration-300 origin-left">
+                            {label === 'Work' ? '💼' : label === 'About' ? '👤' : label === 'Playground' ? '🎮' : '✉️'}
+                          </span>
+                          <span className="font-semibold text-white/90">{label}</span>
                         </Link>
                       ))}
-                    </section>
+                    </nav>
 
-                    <section className="flex flex-col gap-4 rounded-3xl border border-white/10 bg-gradient-to-r from-white/10 to-transparent p-5 backdrop-blur">
-                      <div className="flex items-center gap-3">
-                        <div className="grid h-12 w-12 place-content-center rounded-2xl bg-white/15 text-xl">🎯</div>
-                        <div className="space-y-1">
-                          <p className="text-xs font-semibold uppercase tracking-[0.35em] text-white/50">3D disabled on mobile</p>
-                          <p className="text-sm text-white/80">Smooth scrolling & low battery usage guaranteed.</p>
-                        </div>
-                      </div>
-                      <div className="flex flex-col gap-3 rounded-2xl border border-white/10 bg-black/40 p-4 sm:flex-row sm:items-center">
-                        <img
-                          src={fallbackPreview}
-                          alt="Static preview placeholder"
-                          className="h-20 w-20 rounded-xl object-cover"
-                          loading="lazy"
-                          decoding="async"
-                        />
-                        <div className="text-sm text-white/75">
-                          Enjoy a lightweight snapshot here. For the full interactive Tetocat, open this site on desktop.
-                        </div>
-                      </div>
-                    </section>
-
-                    <section className="space-y-4">
-                      <h2 className="text-sm font-semibold uppercase tracking-[0.35em] text-white/50">Highlights</h2>
-                      <dl className="grid gap-4 sm:grid-cols-2">
+                    <section className="space-y-3 pt-4">
+                      <h2 className="text-xs font-bold uppercase tracking-widest text-white/30">Highlights</h2>
+                      <div className="grid gap-3">
                         {highlightTiles.map(({ title, detail }) => (
-                          <div key={title} className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur">
-                            <dt className="text-[0.8rem] font-semibold uppercase tracking-[0.2em] text-white/60">{title}</dt>
-                            <dd className="mt-2 text-sm text-white/80">{detail}</dd>
+                          <div key={title} className="rounded-2xl bg-white/5 p-5 border border-white/5">
+                            <h3 className="text-xs font-bold uppercase tracking-widest text-white/50">{title}</h3>
+                            <p className="mt-2 text-sm font-medium text-white/80 leading-relaxed">{detail}</p>
                           </div>
                         ))}
-                      </dl>
+                      </div>
                     </section>
                   </motion.main>
                 ) : (
