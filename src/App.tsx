@@ -1,13 +1,15 @@
 import type { CSSProperties } from 'react'
-import { lazy, Suspense } from 'react'
+import { lazy } from 'react'
 import { Link, Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 
 import HeroSection from './components/HeroSection'
 import Navbar from './components/Navbar'
 import SiteFooter from './components/SiteFooter'
+import SuspenseLoader from './components/ui/SuspenseLoader'
 import useIsMobileDevice from './hooks/useIsMobileDevice'
 import fallbackPreview from './assets/fatahh.png'
+import { pageMotion, pageTransition } from './constants/animation'
 
 // Lazy load heavy components
 const SplineShowcase = lazy(() => import('./components/3DTeto'))
@@ -45,14 +47,6 @@ const backgroundStyles: CSSProperties = {
 function App() {
   const location = useLocation()
   const isMobile = useIsMobileDevice()
-
-  const pageMotion = {
-    initial: { opacity: 0, y: 32 },
-    animate: { opacity: 1, y: 0 },
-    exit: { opacity: 0, y: -24 },
-  }
-
-  const pageTransition = { duration: 0.55, ease: [0.22, 0.61, 0.36, 1] as const }
 
   return (
     <div className="relative isolate min-h-screen overflow-hidden text-white" style={backgroundStyles}>
@@ -128,9 +122,9 @@ function App() {
                     transition={pageTransition}
                   >
                     <HeroSection tiles={highlightTiles} />
-                    <Suspense fallback={<div className="flex items-center justify-center flex-1 text-sm text-white/50">Loading...</div>}>
+                    <SuspenseLoader className="">
                       <SplineShowcase />
-                    </Suspense>
+                    </SuspenseLoader>
                   </motion.main>
                 )
               }
@@ -138,33 +132,33 @@ function App() {
             <Route
               path="/work"
               element={
-                <Suspense fallback={<div className="mt-20 flex items-center justify-center flex-1 text-sm text-white/50">Loading...</div>}>
+                <SuspenseLoader>
                   <Work />
-                </Suspense>
+                </SuspenseLoader>
               }
             />
             <Route
               path="/about"
               element={
-                <Suspense fallback={<div className="mt-20 flex items-center justify-center flex-1 text-sm text-white/50">Loading...</div>}>
+                <SuspenseLoader>
                   <AboutMe />
-                </Suspense>
+                </SuspenseLoader>
               }
             />
             <Route
               path="/playground"
               element={
-                <Suspense fallback={<div className="mt-20 flex items-center justify-center flex-1 text-sm text-white/50">Loading...</div>}>
+                <SuspenseLoader>
                   <Playground />
-                </Suspense>
+                </SuspenseLoader>
               }
             />
             <Route
               path="/contact"
               element={
-                <Suspense fallback={<div className="mt-20 flex items-center justify-center flex-1 text-sm text-white/50">Loading...</div>}>
+                <SuspenseLoader>
                   <Contact />
-                </Suspense>
+                </SuspenseLoader>
               }
             />
             <Route path="*" element={<Navigate to="/" replace />} />

@@ -3,7 +3,7 @@ import { Canvas, useFrame } from '@react-three/fiber'
 import { ContactShadows, Environment, Html, useGLTF } from '@react-three/drei'
 import { Box3, MathUtils, Mesh, Vector3, type Group, type Object3D, type WebGLRenderer } from 'three'
 
-const modelUrl = `${import.meta.env.BASE_URL}tetocat.glb`
+import { TETOCAT_MODEL_URL } from '../constants/models'
 
 type FrameState = {
   viewport: {
@@ -24,7 +24,7 @@ function LoadingOverlay() {
 const TetocatAvatar = memo(function TetocatAvatar() {
   const group = useRef<Group>(null)
   const pointer = useRef({ x: 0, y: 0 })
-  const { scene } = useGLTF(modelUrl, true)
+  const { scene } = useGLTF(TETOCAT_MODEL_URL, true)
   const cloned = useMemo(() => scene.clone(true), [scene])
 
   const modelHeight = useMemo(() => {
