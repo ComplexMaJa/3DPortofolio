@@ -1,7 +1,7 @@
 import { useGLTF } from '@react-three/drei'
 
-const modelUrl = `${import.meta.env.BASE_URL}tetocat.glb`
+import { TETOCAT_MODEL_URL } from '../constants/models'
 
 export const preloadTetocat = () => {
-  useGLTF.preload(modelUrl, true)
+  useGLTF.preload(TETOCAT_MODEL_URL, true)
 }

@@ -1,12 +1,4 @@
-import { motion } from 'framer-motion'
-
-const pageMotion = {
-	initial: { opacity: 0, y: 32 },
-	animate: { opacity: 1, y: 0 },
-	exit: { opacity: 0, y: -24 },
-}
-
-const pageTransition = { duration: 0.55, ease: [0.22, 0.61, 0.36, 1] as const }
+import PageLayout from '../ui/PageLayout'
 
 const experiments = [
 	{
@@ -28,13 +20,7 @@ const experiments = [
 
 function Playground() {
 	return (
-		<motion.section
-			className="mt-20 flex flex-1 flex-col gap-12"
-			initial={pageMotion.initial}
-			animate={pageMotion.animate}
-			exit={pageMotion.exit}
-			transition={pageTransition}
-		>
+		<PageLayout>
 			<header className="space-y-5">
 				<p className="text-xs uppercase tracking-[0.4em] text-white/40">Playground</p>
 				<h1 className="text-3xl font-semibold text-white sm:text-4xl">Experiments, sketches, and motion tests</h1>
@@ -62,7 +48,7 @@ function Playground() {
 					</article>
 				))}
 			</div>
-		</motion.section>
+		</PageLayout>
 	)
 }
 
