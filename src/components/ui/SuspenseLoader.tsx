@@ -15,7 +15,7 @@ function SuspenseLoader({ children, className = 'mt-20' }: SuspenseLoaderProps) 
 		<Suspense
 			fallback={
 				<div className={`flex items-center justify-center flex-1 text-sm text-white/50 ${className}`}>
-					Loading...
+					<div className="h-6 w-6 animate-spin rounded-full border-2 border-white/20 border-t-white" />
 				</div>
 			}
 		>

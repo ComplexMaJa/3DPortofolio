@@ -2,6 +2,7 @@ import { Link, NavLink } from 'react-router-dom'
 import { memo } from 'react'
 
 import GooeyNav from './ui/GooeyNav'
+import { prefetchRoute } from '../utils/prefetch'
 
 export type NavLink = {
   label: string
@@ -15,7 +16,12 @@ interface NavbarProps {
 const Navbar = memo(function Navbar({ links }: NavbarProps) {
   return (
     <header className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-      <Link className="group inline-flex items-center gap-3" to="/" aria-label="Navigate to home">
+      <Link
+        className="group inline-flex items-center gap-3"
+        to="/"
+        aria-label="Navigate to home"
+        onMouseEnter={() => prefetchRoute('/')}
+      >
         <div className="grid h-10 w-10 place-content-center overflow-hidden rounded-full bg-white/10 transition group-hover:bg-white/20">
           <img
             src="https://i.redd.it/7wqxmrey0ewe1.gif"
@@ -40,6 +46,7 @@ const Navbar = memo(function Navbar({ links }: NavbarProps) {
           <NavLink
             key={label}
             to={href}
+            onMouseEnter={() => prefetchRoute(href)}
             className={({ isActive }) =>
               `cursor-pointer transition hover:text-white ${isActive ? 'text-white' : ''}`
             }

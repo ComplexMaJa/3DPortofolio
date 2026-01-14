@@ -11,12 +11,21 @@ createRoot(document.getElementById('root')!).render(
 )
 
 const scheduleTetocatWarmup = () => {
-  import('./components/preload3D.ts').then((module) => {
+  import('./utils/prefetch').then((module) => {
     module.preloadTetocat?.()
   })
 }
 
 if (typeof window !== 'undefined') {
+  // Register Service Worker for asset caching
+  if ('serviceWorker' in navigator && !import.meta.env.DEV) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js').catch((error) => {
+        console.error('SW registration failed:', error)
+      })
+    })
+  }
+
   const globalWindow = window as Window &
     typeof globalThis & { requestIdleCallback?: (callback: IdleRequestCallback) => number }
 

@@ -1,4 +1,9 @@
+import { Cache } from 'three'
 import type { CSSProperties } from 'react'
+
+// Enable Three.js internal cache for resources
+Cache.enabled = true
+
 import { lazy } from 'react'
 import { Link, Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'

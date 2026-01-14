@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { prefetchRoute } from '../../utils/prefetch';
 
 interface GooeyNavItem {
   label: string;
@@ -366,6 +367,7 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
                 <a
                   href={item.href}
                   onClick={e => handleClick(e, index)}
+                  onMouseEnter={() => prefetchRoute(item.href)}
                   onKeyDown={e => handleKeyDown(e, index)}
                   className="outline-none py-[0.6em] px-[1em] inline-block"
                 >
