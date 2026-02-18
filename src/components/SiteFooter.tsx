@@ -46,7 +46,7 @@ const links = [
 
 const SiteFooter = memo(function SiteFooter() {
   return (
-    <footer className="mt-24 flex flex-wrap items-center justify-between gap-6 text-xs uppercase tracking-[0.35em] text-white/40">
+    <footer className="mt-24 flex flex-wrap items-center justify-between gap-6 text-xs uppercase tracking-[0.35em] text-primary/40">
       <p>© 2025 MaJa.dev · Based in Indonesia</p>
       <div className="flex gap-4">
         {links.map(({ href, label, Icon }) => (
@@ -55,11 +55,11 @@ const SiteFooter = memo(function SiteFooter() {
             href={href}
             aria-label={label}
             title={label}
-            className="group rounded-full p-2 text-white/40 transition hover:text-white/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50"
+            className="group rounded-full p-2 text-primary/40 transition hover:text-primary/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary/50"
             rel={href.startsWith('http') ? 'noreferrer' : undefined}
             target={href.startsWith('http') ? '_blank' : undefined}
           >
-            <Icon className="h-5 w-5 transition-colors duration-200 group-hover:text-white/70" />
+            <Icon className="h-5 w-5 transition-colors duration-200 group-hover:text-primary/70" />
             <span className="sr-only">{label}</span>
           </a>
         ))}

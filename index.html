@@ -12,6 +12,14 @@
     <title>MaJa's Portfolio</title>
   </head>
   <body>
+    <script>
+      // Prevent flash of wrong theme on load
+      (function () {
+        var s = localStorage.getItem('theme-preference');
+        var t = s || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+        if (t === 'light') document.documentElement.classList.add('light');
+      })();
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

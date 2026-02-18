@@ -222,28 +222,28 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
             z-index: 1;
           }
           .effect.text {
-            color: white;
+            color: rgb(var(--color-primary));
             transition: color 0.3s ease;
           }
           .effect.text.active {
-            color: black;
+            color: rgb(var(--color-surface));
           }
           .effect.filter {
             filter: blur(7px) contrast(100) blur(0);
-            mix-blend-mode: lighten;
+            mix-blend-mode: var(--blend-nav);
           }
           .effect.filter::before {
             content: "";
             position: absolute;
             inset: -75px;
             z-index: -2;
-            background: black;
+            background: rgb(var(--color-surface));
           }
           .effect.filter::after {
             content: "";
             position: absolute;
             inset: 0;
-            background: white;
+            background: rgb(var(--color-primary));
             transform: scale(0);
             opacity: 0;
             z-index: -1;
@@ -326,7 +326,7 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
             }
           }
           li.active {
-            color: black;
+            color: rgb(var(--color-surface));
             text-shadow: none;
           }
           li.active::after {
@@ -338,7 +338,7 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
             position: absolute;
             inset: 0;
             border-radius: 8px;
-            background: white;
+            background: rgb(var(--color-primary));
             opacity: 0;
             transform: scale(0);
             transition: all 0.3s ease;
@@ -352,14 +352,14 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
             ref={navRef}
             className="flex gap-8 list-none p-0 px-4 m-0 relative z-[3]"
             style={{
-              color: 'white',
+              color: 'rgb(var(--color-primary))',
               textShadow: '0 1px 1px hsl(205deg 30% 10% / 0.2)'
             }}
           >
             {items.map((item, index) => (
               <li
                 key={index}
-                className={`rounded-full relative cursor-pointer transition-[background-color_color_box-shadow] duration-300 ease shadow-[0_0_0.5px_1.5px_transparent] text-white ${
+                className={`rounded-full relative cursor-pointer transition-[background-color_color_box-shadow] duration-300 ease shadow-[0_0_0.5px_1.5px_transparent] text-primary ${
                   activeIndex === index ? 'active' : ''
                 }`}
               >

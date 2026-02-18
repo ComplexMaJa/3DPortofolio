@@ -6,19 +6,55 @@
 
 @layer base {
   :root {
+    --color-surface: 0 0 0;
+    --color-primary: 255 255 255;
+    --blend-nav: lighten;
+    --step-inactive-bg: #222222;
     color-scheme: dark;
   }
 
+  :root.light {
+    --color-surface: 255 255 255;
+    --color-primary: 0 0 0;
+    --blend-nav: darken;
+    --step-inactive-bg: #e5e5e5;
+    color-scheme: light;
+  }
+
   * {
-    @apply selection:bg-white/20 selection:text-white;
+    @apply selection:bg-primary/20 selection:text-primary;
   }
 
   body {
-    @apply m-0 min-h-screen bg-black text-zinc-50 font-["Space_Grotesk",sans-serif] antialiased;
-    background-color: #000;
+    @apply m-0 min-h-screen bg-surface text-primary font-["Space_Grotesk",sans-serif] antialiased;
+    background-color: rgb(var(--color-surface));
   }
 
   #root {
     min-height: 100vh;
   }
+}
+
+/* Smooth theme transition */
+html.theme-transition,
+html.theme-transition *,
+html.theme-transition *::before,
+html.theme-transition *::after {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease,
+    fill 0.3s ease, stroke 0.3s ease, box-shadow 0.3s ease !important;
+  transition-delay: 0s !important;
+}
+
+/* Page background gradient */
+.app-bg {
+  background-color: rgb(var(--color-surface));
+  background-image:
+    radial-gradient(circle at top, rgb(var(--color-primary) / 0.12) 0%, rgb(var(--color-primary) / 0) 65%),
+    linear-gradient(115deg, rgb(var(--color-primary) / 0.036) 0%, rgb(var(--color-primary) / 0.012) 45%, transparent 70%);
+  background-blend-mode: screen, screen;
+  background-repeat: no-repeat, no-repeat;
+}
+
+.light .app-bg {
+  background-blend-mode: multiply, multiply;
 }

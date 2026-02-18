@@ -85,7 +85,7 @@ export default function Stepper({
   return (
     <div className={wrapperClasses} {...restProps}>
       <div
-        className={`mx-auto w-full max-w-md rounded-3xl border border-white/10 bg-black/40 shadow-[0_25px_80px_-40px_rgba(0,0,0,0.65)] backdrop-blur ${stepCircleContainerClassName}`}
+        className={`mx-auto w-full max-w-md rounded-3xl border border-primary/10 bg-surface/40 shadow-[0_25px_80px_-40px_rgba(0,0,0,0.25)] backdrop-blur ${stepCircleContainerClassName}`}
       >
         <div className={`${stepContainerClassName} flex w-full items-center p-8`}>
           {stepsArray.map((_, index) => {
@@ -273,7 +273,7 @@ function StepIndicator({ step, currentStep, onClickStep, disableStepIndicators =
     >
       <motion.div
         variants={{
-          inactive: { scale: 1, backgroundColor: '#222', color: '#a3a3a3' },
+          inactive: { scale: 1, backgroundColor: 'var(--step-inactive-bg)', color: '#a3a3a3' },
           active: { scale: 1, backgroundColor: '#ef4444', color: '#ef4444' },
           complete: { scale: 1, backgroundColor: '#ef4444', color: '#fca5a5' }
         }}
@@ -299,7 +299,7 @@ interface StepConnectorProps {
 function StepConnector({ isComplete }: StepConnectorProps) {
   const lineVariants: Variants = {
     incomplete: { width: 0, backgroundColor: 'transparent' },
-    complete: { width: '100%', backgroundColor: '#ffffffff' }
+    complete: { width: '100%', backgroundColor: 'rgb(var(--color-primary))' }
   };
 
   return (

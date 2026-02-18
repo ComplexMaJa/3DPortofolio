@@ -14,7 +14,7 @@ type FrameState = {
 function LoadingOverlay() {
   return (
     <Html center>
-      <div className="animate-pulse bg-black/70 px-6 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-white/70 backdrop-blur-sm transition-opacity duration-500">
+      <div className="animate-pulse bg-surface/70 px-6 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-primary/70 backdrop-blur-sm transition-opacity duration-500">
         Loading 3D preview…
       </div>
     </Html>
@@ -111,10 +111,10 @@ function SceneLights() {
 
 function ErrorOverlay({ onRetry }: { onRetry: () => void }) {
   return (
-    <div className="flex h-full w-full flex-col items-center justify-center gap-3 bg-black/60 text-center text-sm text-white/70">
+    <div className="flex h-full w-full flex-col items-center justify-center gap-3 bg-surface/60 text-center text-sm text-primary/70">
       <span>3D preview offline.</span>
       <button
-        className="px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-white/80 transition hover:text-white"
+        className="px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-primary/80 transition hover:text-primary"
         onClick={onRetry}
         type="button"
       >
@@ -174,9 +174,9 @@ function SplineShowcase() {
             </Suspense>
           </Canvas>
 
-          <div className="pointer-events-none absolute bottom-6 right-4 flex flex-col items-end gap-2 text-[0.6rem] uppercase tracking-[0.25em] text-white/60">
-            <span className="text-white/80">Teto teto san &amp; 3D Web</span>
-            <span className="text-white/50">Craft · Integrate · Iterate · 2025</span>
+          <div className="pointer-events-none absolute bottom-6 right-4 flex flex-col items-end gap-2 text-[0.6rem] uppercase tracking-[0.25em] text-primary/60">
+            <span className="text-primary/80">Teto teto san &amp; 3D Web</span>
+            <span className="text-primary/50">Craft · Integrate · Iterate · 2025</span>
           </div>
         </div>
       </PreviewErrorBoundary>
