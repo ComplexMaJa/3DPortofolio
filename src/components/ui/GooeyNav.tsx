@@ -150,9 +150,9 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
       void textRef.current.offsetWidth;
       textRef.current.classList.add('active');
     }
-  // All functions (updateEffectPosition, clearParticles, makeParticles) and refs are stable
-  // They're defined in the same component scope and don't change across renders
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // All functions (updateEffectPosition, clearParticles, makeParticles) and refs are stable
+    // They're defined in the same component scope and don't change across renders
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleClick = (event: React.MouseEvent<HTMLAnchorElement>, index: number) => {
@@ -350,7 +350,7 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
         <nav className="flex relative" style={{ transform: 'translate3d(0,0,0.01px)' }}>
           <ul
             ref={navRef}
-            className="flex gap-8 list-none p-0 px-4 m-0 relative z-[3]"
+            className="flex gap-3 md:gap-8 list-none p-0 px-2 md:px-4 m-0 relative z-[3]"
             style={{
               color: 'rgb(var(--color-primary))',
               textShadow: '0 1px 1px hsl(205deg 30% 10% / 0.2)'
@@ -359,15 +359,14 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
             {items.map((item, index) => (
               <li
                 key={index}
-                className={`rounded-full relative cursor-pointer transition-[background-color_color_box-shadow] duration-300 ease shadow-[0_0_0.5px_1.5px_transparent] text-primary ${
-                  activeIndex === index ? 'active' : ''
-                }`}
+                className={`rounded-full relative cursor-pointer transition-[background-color_color_box-shadow] duration-300 ease shadow-[0_0_0.5px_1.5px_transparent] text-primary ${activeIndex === index ? 'active' : ''
+                  }`}
               >
                 <a
                   href={item.href}
                   onClick={e => handleClick(e, index)}
                   onKeyDown={e => handleKeyDown(e, index)}
-                  className="outline-none py-[0.6em] px-[1em] inline-block"
+                  className="outline-none py-[0.5em] px-[0.6em] md:py-[0.6em] md:px-[1em] inline-block text-sm md:text-base"
                 >
                   {item.label}
                 </a>

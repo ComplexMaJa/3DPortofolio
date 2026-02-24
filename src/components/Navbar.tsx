@@ -1,4 +1,4 @@
-import { Link, NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { memo } from 'react'
 
 import GooeyNav from './ui/GooeyNav'
@@ -33,22 +33,7 @@ const Navbar = memo(function Navbar({ links }: NavbarProps) {
         </span>
       </Link>
 
-      <div className="hidden md:block">
-        <GooeyNav items={links} />
-      </div>
-      <nav className="flex items-center gap-6 text-sm font-medium text-primary/60 md:hidden">
-        {links.map(({ label, href }) => (
-          <NavLink
-            key={label}
-            to={href}
-            className={({ isActive }) =>
-              `cursor-pointer transition hover:text-primary ${isActive ? 'text-primary' : ''}`
-            }
-          >
-            {label}
-          </NavLink>
-        ))}
-      </nav>
+      <GooeyNav items={links} />
 
       <div className="flex items-center gap-3 self-start md:self-auto">
         <ThemeToggle />
