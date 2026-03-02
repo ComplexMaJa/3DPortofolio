@@ -88,24 +88,29 @@ const contacts: ContactChannel[] = [
     },
 ]
 
-const timelineOptions = ['2-4 weeks', '4-6 weeks', '8+ weeks']
-const budgetRanges = ['Under $10k', '$10k-$25k', '$25k+']
+
 
 function Contact() {
     const [projectFocus, setProjectFocus] = useState('')
-    const [timeline, setTimeline] = useState(timelineOptions[0])
-    const [budget, setBudget] = useState(budgetRanges[0])
+    const [timeline, setTimeline] = useState('')
+    const [budget, setBudget] = useState('')
     const [contactName, setContactName] = useState('')
     const [projectNotes, setProjectNotes] = useState('')
     const [stepperKey, setStepperKey] = useState(0)
     const [hasSent, setHasSent] = useState(false)
+    const [currentStep, setCurrentStep] = useState(1)
+
+    const isNextDisabled =
+        (currentStep === 1 && !projectFocus.trim()) ||
+        (currentStep === 2 && (!timeline.trim() || !budget.trim())) ||
+        (currentStep === 3 && !contactName.trim())
 
     const projectFocusPreview = projectFocus.trim() || 'a new collaboration opportunity'
 
     const resetFormSelections = () => {
         setProjectFocus('')
-        setTimeline(timelineOptions[0])
-        setBudget(budgetRanges[0])
+        setTimeline('')
+        setBudget('')
         setContactName('')
         setProjectNotes('')
     }
@@ -117,8 +122,8 @@ function Contact() {
             'Hi MaJa,',
             '',
             `I'm reaching out about ${formattedFocus}.`,
-            `Timeline: ${timeline}`,
-            `Budget: ${budget}`,
+            `Timeline: ${timeline.trim() || 'Not specified'}`,
+            `Budget: ${budget.trim() || 'Not specified'}`,
             '',
             projectNotes.trim() ? projectNotes.trim() : 'Add any extra context here before sending.',
             '',
@@ -131,12 +136,14 @@ function Contact() {
         }
         setHasSent(true)
         resetFormSelections()
+        setCurrentStep(1)
         setStepperKey(prev => prev + 1)
     }
 
     const handleStartAnother = () => {
         setHasSent(false)
         resetFormSelections()
+        setCurrentStep(1)
         setStepperKey(prev => prev + 1)
     }
 
@@ -183,7 +190,7 @@ function Contact() {
                     <Stepper
                         key={stepperKey}
                         initialStep={1}
-                        onStepChange={() => setHasSent(false)}
+                        onStepChange={(step) => { setCurrentStep(step); setHasSent(false); }}
                         onFinalStepCompleted={composeEmail}
                         nextButtonText="Next"
                         finalButtonText="Send email"
@@ -192,6 +199,8 @@ function Contact() {
                         stepContainerClassName="justify-between"
                         contentClassName="py-8"
                         footerClassName=""
+                        nextButtonProps={{ disabled: isNextDisabled }}
+                        disableStepIndicators
                     >
                         <Step>
                             <div className="space-y-6">
@@ -221,51 +230,29 @@ function Contact() {
                                     <h3 className="text-lg font-semibold text-primary">Timeline and investment</h3>
                                 </div>
                                 <div className="space-y-4">
-                                    <div className="space-y-2">
-                                        <p className="text-sm text-primary/55">Desired kickoff timeline</p>
-                                        <div className="flex flex-wrap gap-3">
-                                            {timelineOptions.map(option => {
-                                                const isActive = timeline === option
-                                                return (
-                                                    <button
-                                                        key={option}
-                                                        type="button"
-                                                        onClick={() => setTimeline(option)}
-                                                        className={`rounded-full border px-4 py-2 text-sm transition focus:outline-none ${
-                                                            isActive
-                                                                ? 'border-primary bg-primary text-surface shadow-neon-sm'
-                                                                : 'border-primary/20 bg-surface/30 text-primary/70 hover:bg-surface/50'
-                                                        }`}
-                                                    >
-                                                        {option}
-                                                    </button>
-                                                )
-                                            })}
-                                        </div>
-                                    </div>
+                                    <label className="flex flex-col gap-2 text-sm text-primary/60" htmlFor="timeline">
+                                        <span>Desired kickoff timeline</span>
+                                        <input
+                                            id="timeline"
+                                            type="text"
+                                            value={timeline}
+                                            onChange={event => setTimeline(event.target.value)}
+                                            className="rounded-xl border border-primary/15 bg-surface/40 px-4 py-3 text-primary outline-none transition focus:border-primary/40"
+                                            placeholder="e.g. 2-4 weeks, 3 months, ASAP"
+                                        />
+                                    </label>
 
-                                    <div className="space-y-2">
-                                        <p className="text-sm text-primary/55">Estimated budget</p>
-                                        <div className="flex flex-wrap gap-3">
-                                            {budgetRanges.map(range => {
-                                                const isActive = budget === range
-                                                return (
-                                                    <button
-                                                        key={range}
-                                                        type="button"
-                                                        onClick={() => setBudget(range)}
-                                                        className={`rounded-full border px-4 py-2 text-sm transition focus:outline-none ${
-                                                            isActive
-                                                                ? 'border-primary bg-primary text-surface shadow-neon-sm'
-                                                                : 'border-primary/20 bg-surface/30 text-primary/70 hover:bg-surface/50'
-                                                        }`}
-                                                    >
-                                                        {range}
-                                                    </button>
-                                                )
-                                            })}
-                                        </div>
-                                    </div>
+                                    <label className="flex flex-col gap-2 text-sm text-primary/60" htmlFor="budget">
+                                        <span>Estimated budget</span>
+                                        <input
+                                            id="budget"
+                                            type="text"
+                                            value={budget}
+                                            onChange={event => setBudget(event.target.value)}
+                                            className="rounded-xl border border-primary/15 bg-surface/40 px-4 py-3 text-primary outline-none transition focus:border-primary/40"
+                                            placeholder="e.g. $5k, $10k-$25k, negotiable"
+                                        />
+                                    </label>
                                 </div>
                             </div>
                         </Step>
@@ -307,8 +294,8 @@ function Contact() {
                                     </p>
                                     <ul className="mt-3 space-y-1 text-xs text-primary/50">
                                         <li>{`Project: ${projectFocusPreview}`}</li>
-                                        <li>{`Timeline: ${timeline}`}</li>
-                                        <li>{`Budget: ${budget}`}</li>
+                                        <li>{`Timeline: ${timeline.trim() || 'Not specified'}`}</li>
+                                        <li>{`Budget: ${budget.trim() || 'Not specified'}`}</li>
                                     </ul>
                                 </div>
                             </div>

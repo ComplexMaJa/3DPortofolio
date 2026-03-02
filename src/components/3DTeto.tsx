@@ -175,8 +175,8 @@ function SplineShowcase() {
           </Canvas>
 
           <div className="pointer-events-none absolute bottom-6 right-4 flex flex-col items-end gap-2 text-[0.6rem] uppercase tracking-[0.25em] text-primary/60">
-            <span className="text-primary/80">Teto teto san &amp; 3D Web</span>
-            <span className="text-primary/50">Craft · Integrate · Iterate · 2025</span>
+            <span className="text-primary/80">TetoTetoTeto &amp; 3D Web</span>
+            <span className="text-primary/50">Craft · Integrate · Iterate · 2026</span>
           </div>
         </div>
       </PreviewErrorBoundary>

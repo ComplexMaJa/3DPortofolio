@@ -47,7 +47,7 @@ const links = [
 const SiteFooter = memo(function SiteFooter() {
   return (
     <footer className="mt-24 flex flex-wrap items-center justify-between gap-6 text-xs uppercase tracking-[0.35em] text-primary/40">
-      <p>© 2025 MaJa.dev · Based in Indonesia</p>
+      <p>© 2026 MaJa.dev · Based in Indonesia 🇮🇩</p>
       <div className="flex gap-4">
         {links.map(({ href, label, Icon }) => (
           <a
