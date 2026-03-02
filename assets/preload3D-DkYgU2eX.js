@@ -1,1 +1,0 @@
-import{T as o,D as r}from"./models-DvefT_uK.js";import{u as t}from"./three-addons-DeXTF9Lc.js";import"./react-vendor-BR1AOg13.js";import"./vendor-misc-BkREw5iF.js";import"./three-core-CqK9W3tm.js";const i=()=>{t.preload(o,r)};export{i as preloadTetocat};
