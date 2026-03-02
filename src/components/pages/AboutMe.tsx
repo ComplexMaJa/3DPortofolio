@@ -1,4 +1,24 @@
+import { Fragment } from 'react'
 import PageLayout from '../ui/PageLayout'
+
+const workflowSteps = [
+	{
+		step: 1,
+		text: 'Prototype rapidly in Copilot, Lovable, and other AI tools ensuring a robust boilerplate.',
+	},
+	{
+		step: 2,
+		text: 'Design responsive and clean UI structures for an aesthetically pleasing design.',
+	},
+	{
+		step: 3,
+		text: 'Add in features and other components neccecary for launching the app, ensuring a feature-rich experience.',
+	},
+	{
+		step: 4,
+		text: 'Optimize, test, and deploy the app to production, ensuring a smooth user experience.',
+	},
+]
 
 const milestones = [
 	{
@@ -20,28 +40,64 @@ function AboutMe() {
 		<PageLayout>
 			<header className="space-y-5">
 				<p className="text-xs uppercase tracking-[0.4em] text-primary/40">About</p>
-				<h1 className="text-3xl font-semibold text-primary sm:text-4xl">Profesional Ctrl c + Ctrl v'er</h1>
+				<h1 className="text-3xl font-semibold text-primary sm:text-4xl">Professional Ctrl c + Ctrl v'er</h1>
 						<p className="max-w-3xl text-base text-primary/60 sm:text-lg">
-							Hi, I&apos;m MaJa - a developer who thrives at Building web and mobile apps using AI, Born and raised in Indonesia and looking to get the hell out of here and i wanna do that using code!.
+							Hi, I&apos;m MaJa - a developer building web and mobile applications with AI, Born and raised in Indonesia I work and strive toward building software that reaches users worldwide.
 				</p>
 			</header>
 
-			<section className="grid gap-8 rounded-3xl border border-primary/10 bg-primary/5 p-8 backdrop-blur">
+			<section className="relative grid gap-8 overflow-hidden rounded-3xl border border-primary/10 bg-primary/5 p-8 shadow-neon-soft backdrop-blur">
+				{/* Decorative background glow */}
+				<div className="pointer-events-none absolute -top-24 left-1/2 h-48 w-3/4 -translate-x-1/2 rounded-full bg-primary/[0.06] blur-3xl" />
+
 				<h2 className="text-xl font-semibold text-primary">How I work</h2>
-				<ul className="grid gap-6 text-sm text-primary/60 sm:grid-cols-2">
-					<li className="rounded-2xl border border-primary/10 bg-surface/40 p-6">
-						Prototype rapidly in Copilot,Lovable, and other AI tools ensuring a robust boilerplate.
-					</li>
-					<li className="rounded-2xl border border-primary/10 bg-surface/40 p-6">
-						Design responsive UI languages with Tailwind and ship them via component-driven architectures.
-					</li>
-					<li className="rounded-2xl border border-primary/10 bg-surface/40 p-6">
-						Collaborate closely with design and product to align storytelling, motion, and accessibility goals.
-					</li>
-					<li className="rounded-2xl border border-primary/10 bg-surface/40 p-6">
-						Advocate for measurable performance budgets, including bundle size, shader complexity, and interaction latency.
-					</li>
-				</ul>
+				<ol className="relative flex flex-col items-center gap-6 text-sm text-primary/60 lg:flex-row lg:items-center">
+					{workflowSteps.map((item, i) => (
+						<Fragment key={item.step}>
+							<li className="group relative flex w-full min-w-0 flex-1 gap-4 rounded-2xl border border-primary/10 bg-surface/40 p-5 transition-all duration-300 hover:border-primary/25 hover:bg-surface/60 hover:shadow-neon-hover lg:flex-col lg:gap-3">
+								{/* Step number badge */}
+								<span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-primary/20 bg-primary/10 text-xs font-bold text-primary/70 transition-colors duration-300 group-hover:border-primary/40 group-hover:bg-primary/20 group-hover:text-primary">
+									{item.step}
+								</span>
+								<p className="leading-relaxed">{item.text}</p>
+							</li>
+							{i < workflowSteps.length - 1 && (
+								<li className="flex shrink-0 items-center justify-center" aria-hidden="true">
+									{/* Right arrow – visible on desktop */}
+									<span className="hidden h-9 w-9 items-center justify-center rounded-full border border-primary/10 bg-primary/5 lg:flex">
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											strokeWidth={2.5}
+											strokeLinecap="round"
+											strokeLinejoin="round"
+											className="h-4 w-4 text-primary/40"
+										>
+											<path d="M9 5l7 7-7 7" />
+										</svg>
+									</span>
+									{/* Down arrow – visible on mobile */}
+									<span className="flex h-9 w-9 items-center justify-center rounded-full border border-primary/10 bg-primary/5 lg:hidden">
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											strokeWidth={2.5}
+											strokeLinecap="round"
+											strokeLinejoin="round"
+											className="h-4 w-4 text-primary/40"
+										>
+											<path d="M5 9l7 7 7-7" />
+										</svg>
+									</span>
+								</li>
+							)}
+						</Fragment>
+					))}
+				</ol>
 			</section>
 
 			<section className="space-y-4">

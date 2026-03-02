@@ -24,16 +24,7 @@ const navLinks = [
   { label: 'Contact', href: '/contact' },
 ]
 
-const highlightTiles = [
-  {
-    title: 'Experience',
-    detail: '2+ years of building web apps and mobile apps.',
-  },
-  {
-    title: 'Stack',
-    detail: 'React · TypeScript · Three.js · Spline · Tailwind · HTML · CSS',
-  },
-]
+
 
 function App() {
   const location = useLocation()
@@ -63,7 +54,7 @@ function App() {
                       </h1>
 
                       <p className="text-sm text-primary/60 leading-relaxed">
-                        Wsg! I'm MaJa / Bumi, i am a dev from Indonesia that is interested in web, app, and game development.
+                        Wsg! I'm MaJa / Bumi, I am a dev from Indonesia that is interested in Software Development Focused on Real Applications.
                       </p>
                     </div>
 
@@ -95,12 +86,14 @@ function App() {
                     <section className="space-y-3 pt-4">
                       <h2 className="text-xs font-bold uppercase tracking-widest text-primary/30">Highlights</h2>
                       <div className="grid gap-3">
-                        {highlightTiles.map(({ title, detail }) => (
-                          <div key={title} className="rounded-2xl bg-primary/5 p-5 border border-primary/5">
-                            <h3 className="text-xs font-bold uppercase tracking-widest text-primary/50">{title}</h3>
-                            <p className="mt-2 text-sm font-medium text-primary/80 leading-relaxed">{detail}</p>
-                          </div>
-                        ))}
+                        <div className="rounded-2xl bg-primary/5 p-5 border border-primary/5">
+                          <h3 className="text-xs font-bold uppercase tracking-widest text-primary/50">Experience</h3>
+                          <p className="mt-2 text-sm font-medium text-primary/80 leading-relaxed">2+ years of building web apps and mobile apps.</p>
+                        </div>
+                        <div className="rounded-2xl bg-primary/5 p-5 border border-primary/5">
+                          <h3 className="text-xs font-bold uppercase tracking-widest text-primary/50">Stack</h3>
+                          <p className="mt-2 text-sm font-medium text-primary/80 leading-relaxed">React · TypeScript · Three.js · Spline · Tailwind · HTML · CSS</p>
+                        </div>
                       </div>
                     </section>
                   </motion.main>
@@ -112,7 +105,7 @@ function App() {
                     exit={pageMotion.exit}
                     transition={pageTransition}
                   >
-                    <HeroSection tiles={highlightTiles} />
+                    <HeroSection />
                     <SuspenseLoader className="">
                       <SplineShowcase />
                     </SuspenseLoader>
