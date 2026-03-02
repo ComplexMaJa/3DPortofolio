@@ -3,7 +3,7 @@ import { Canvas, useFrame } from '@react-three/fiber'
 import { ContactShadows, Environment, Html, useGLTF } from '@react-three/drei'
 import { Box3, MathUtils, Mesh, Vector3, type Group, type Object3D, type WebGLRenderer } from 'three'
 
-import { TETOCAT_MODEL_URL } from '../constants/models'
+import { TETOCAT_MODEL_URL, DRACO_DECODER_PATH } from '../constants/models'
 
 type FrameState = {
   viewport: {
@@ -24,7 +24,11 @@ function LoadingOverlay() {
 const TetocatAvatar = memo(function TetocatAvatar() {
   const group = useRef<Group>(null)
   const pointer = useRef({ x: 0, y: 0 })
-  const { scene } = useGLTF(TETOCAT_MODEL_URL, true)
+
+  // Enable Draco decompression for smaller .glb files (if the model
+  // was re-exported with Draco).  The `true` flag already enables it
+  // but passing the decoder path is more explicit and reliable.
+  const { scene } = useGLTF(TETOCAT_MODEL_URL, DRACO_DECODER_PATH)
   const cloned = useMemo(() => scene.clone(true), [scene])
 
   const modelHeight = useMemo(() => {
@@ -164,6 +168,9 @@ function SplineShowcase() {
             camera={{ position: [0.1, 0.95, 4.2], fov: 50 }}
             dpr={[1, 1.5]}
             shadows
+            // frameloop="demand" can be toggled on for further savings
+            // when the model is fully loaded and idle animations aren't
+            // critical.
             onCreated={({ gl }: { gl: WebGLRenderer }) => {
               gl.setClearColor('#000000', 0)
             }}

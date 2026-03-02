@@ -2,16 +2,24 @@ import { lazy } from 'react'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 
-import HeroSection from './components/HeroSection'
 import Navbar from './components/Navbar'
 import SiteFooter from './components/SiteFooter'
 import SuspenseLoader from './components/ui/SuspenseLoader'
 import { pageMotion, pageTransition } from './constants/animation'
 
-const AboutMe = lazy(() => import('./components/pages/AboutMe'))
-const Contact = lazy(() => import('./components/pages/Contact'))
-const Playground = lazy(() => import('./components/pages/Playground'))
-const Work = lazy(() => import('./components/pages/Work'))
+// ── Synchronous page imports ──────────────────────────────────────
+// These page components are small (1–5 KB gzip each).  Loading them
+// eagerly eliminates the Suspense fallback ("loading" screen) when
+// navigating, making every route transition instant.
+import AboutMe from './components/pages/AboutMe'
+import Contact from './components/pages/Contact'
+import Playground from './components/pages/Playground'
+import Work from './components/pages/Work'
+
+// ── Lazy-loaded heavy component ───────────────────────────────────
+// HeroSection pulls in the entire Three.js / R3F stack (~700 KB).
+// It stays lazy so it doesn't block initial page paint.
+const HeroSection = lazy(() => import('./components/HeroSection'))
 
 const navLinks = [
   { label: 'Work', href: '/work' },
@@ -40,40 +48,66 @@ function App() {
                   exit={pageMotion.exit}
                   transition={pageTransition}
                 >
-                  <HeroSection />
+                  <SuspenseLoader className="mt-32">
+                    <HeroSection />
+                  </SuspenseLoader>
                 </motion.main>
               }
             />
             <Route
               path="/work"
               element={
-                <SuspenseLoader>
+                <motion.main
+                  className="flex flex-1 flex-col"
+                  initial={pageMotion.initial}
+                  animate={pageMotion.animate}
+                  exit={pageMotion.exit}
+                  transition={pageTransition}
+                >
                   <Work />
-                </SuspenseLoader>
+                </motion.main>
               }
             />
             <Route
               path="/about"
               element={
-                <SuspenseLoader>
+                <motion.main
+                  className="flex flex-1 flex-col"
+                  initial={pageMotion.initial}
+                  animate={pageMotion.animate}
+                  exit={pageMotion.exit}
+                  transition={pageTransition}
+                >
                   <AboutMe />
-                </SuspenseLoader>
+                </motion.main>
               }
             />
             <Route
               path="/playground"
               element={
-                <SuspenseLoader>
+                <motion.main
+                  className="flex flex-1 flex-col"
+                  initial={pageMotion.initial}
+                  animate={pageMotion.animate}
+                  exit={pageMotion.exit}
+                  transition={pageTransition}
+                >
                   <Playground />
-                </SuspenseLoader>
+                </motion.main>
               }
             />
             <Route
               path="/contact"
               element={
-                <SuspenseLoader>
+                <motion.main
+                  className="flex flex-1 flex-col"
+                  initial={pageMotion.initial}
+                  animate={pageMotion.animate}
+                  exit={pageMotion.exit}
+                  transition={pageTransition}
+                >
                   <Contact />
-                </SuspenseLoader>
+                </motion.main>
               }
             />
             <Route path="*" element={<Navigate to="/" replace />} />
