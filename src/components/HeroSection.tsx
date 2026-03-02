@@ -6,7 +6,6 @@ import LogoLoop from './ui/LogoLoop'
 import type { LogoItem } from './ui/LogoLoop'
 import SuspenseLoader from './ui/SuspenseLoader'
 import useIsMobileDevice from '../hooks/useIsMobileDevice'
-import fallbackPreview from '../assets/fatahh.png'
 
 const techStackLogos: LogoItem[] = [
   {
@@ -93,21 +92,28 @@ const techStackLogos: LogoItem[] = [
 
 const SplineShowcase = lazy(() => import('./3DTeto'))
 
-const navLinks = [
-  { label: 'Work', href: '/work' },
-  { label: 'About', href: '/about' },
-  { label: 'Playground', href: '/playground' },
-  { label: 'Contact', href: '/contact' },
-]
-
 const HeroSection = memo(function HeroSection() {
   const isMobile = useIsMobileDevice()
 
   if (isMobile) {
     return (
-      <div className="mt-14 flex flex-1 flex-col gap-6">
-        <div className="flex flex-col gap-4">
-          <h1 className="text-4xl font-bold leading-tight text-primary">
+      <div className="mt-10 flex flex-1 flex-col gap-8 px-1">
+        <SplitText
+          text="Welcome!"
+          tag="h2"
+          splitType="chars"
+          delay={45}
+          textAlign="left"
+          className="text-xs font-semibold uppercase tracking-[0.8em] text-primary/35"
+        />
+
+        <div className="inline-flex w-fit items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-primary/55">
+          <span className="h-2 w-2 rounded-full bg-emerald-400" />
+          Available for collaborations
+        </div>
+
+        <div className="space-y-4">
+          <h1 className="text-3xl font-semibold leading-[1.15] tracking-tight text-primary">
             Web / App Developer from Indonesia 🇮🇩
           </h1>
           <p className="text-sm leading-relaxed text-primary/60">
@@ -115,40 +121,48 @@ const HeroSection = memo(function HeroSection() {
           </p>
         </div>
 
-        <div className="flex justify-center py-6">
-          <div className="relative h-64 w-64 overflow-hidden rounded-full border-4 border-primary/5 shadow-2xl shadow-emerald-500/10">
-            <img src={fallbackPreview} alt="Teto" className="h-full w-full object-cover" />
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+          <Link
+            className="group inline-flex items-center justify-center gap-3 rounded-full bg-primary px-6 py-3 text-sm font-semibold uppercase tracking-[0.25em] text-surface transition hover:shadow-neon-cta focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
+            to="/work"
+          >
+            View My Work
+            <span className="transition group-hover:translate-x-1">→</span>
+          </Link>
+          <Link
+            className="inline-flex items-center justify-center gap-3 rounded-full border border-primary/30 bg-primary/10 px-6 py-3 text-sm font-semibold uppercase tracking-[0.25em] text-primary transition hover:bg-primary/20"
+            to="/contact"
+          >
+            Contact Me
+          </Link>
+        </div>
+
+        <div className="flex items-center gap-4 rounded-2xl border border-primary/10 bg-primary/5 p-5 backdrop-blur">
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-primary/15 bg-primary/10">
+            <svg className="h-6 w-6 text-primary/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
+              <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2z" />
+            </svg>
+          </div>
+          <div>
+            <p className="text-2xl font-bold tracking-tight text-primary">2+ <span className="text-base font-semibold text-primary/50">years</span></p>
+            <p className="text-xs uppercase tracking-[0.25em] text-primary/40">Building web &amp; mobile apps</p>
           </div>
         </div>
 
-        <nav className="grid grid-cols-2 gap-3">
-          {navLinks.map(({ label, href }) => (
-            <Link
-              key={label}
-              to={href}
-              className="group flex flex-col justify-between rounded-2xl border border-primary/5 bg-primary/5 p-5 transition hover:border-primary/10 active:scale-95 active:bg-primary/10"
-            >
-              <span className="mb-2 origin-left text-2xl opacity-80 transition-transform duration-300 group-hover:scale-110">
-                {label === 'Work' ? '💼' : label === 'About' ? '👤' : label === 'Playground' ? '🎮' : '✉️'}
-              </span>
-              <span className="font-semibold text-primary/90">{label}</span>
-            </Link>
-          ))}
-        </nav>
-
-        <section className="space-y-3 pt-4">
-          <h2 className="text-xs font-bold uppercase tracking-widest text-primary/30">Highlights</h2>
-          <div className="grid gap-3">
-            <div className="rounded-2xl border border-primary/5 bg-primary/5 p-5">
-              <h3 className="text-xs font-bold uppercase tracking-widest text-primary/50">Experience</h3>
-              <p className="mt-2 text-sm font-medium leading-relaxed text-primary/80">2+ years of building web apps and mobile apps.</p>
-            </div>
-            <div className="rounded-2xl border border-primary/5 bg-primary/5 p-5">
-              <h3 className="text-xs font-bold uppercase tracking-widest text-primary/50">Stack</h3>
-              <p className="mt-2 text-sm font-medium leading-relaxed text-primary/80">React · TypeScript · Three.js · Spline · Tailwind · HTML · CSS</p>
-            </div>
-          </div>
-        </section>
+        <div className="overflow-hidden rounded-2xl border border-primary/10 bg-primary/5 p-4 backdrop-blur">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.35em] text-primary/40">Tech Stack</p>
+          <LogoLoop
+            logos={techStackLogos}
+            speed={40}
+            direction="left"
+            logoHeight={18}
+            gap={32}
+            pauseOnHover
+            fadeOut
+            ariaLabel="Tech stack logos"
+            className="[--logoloop-fadeColorAuto:rgb(var(--color-surface))]"
+          />
+        </div>
       </div>
     )
   }
