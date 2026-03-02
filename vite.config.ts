@@ -32,48 +32,33 @@ export default defineConfig({
 
     rollupOptions: {
       output: {
-        // ── Aggressive vendor chunking ────────────────────────────
-        // Split heavy libraries into dedicated chunks so they are
-        // cached independently and don't re-download on app updates.
+        // ── Safe vendor chunking ──────────────────────────────────
+        // Only split packages that have NO shared React internals.
+        // React 19 uses shared internal references (e.g. Activity,
+        // ReactCurrentActQueue) across react, react-dom, and any
+        // library that accesses React internals. All such packages
+        // MUST remain in the same chunk to avoid undefined-reference
+        // crashes at runtime.
         manualChunks(id: string) {
-          // Three.js core – ~690 KB minified
+          // Three.js core has zero React dependency – safe to isolate
           if (id.includes('node_modules/three/')) {
             return 'three-core'
           }
 
-          // React-Three ecosystem (fiber + drei) – ~490 KB
+          // GSAP has no React dependency either – safe to isolate
           if (
-            id.includes('node_modules/@react-three/fiber') ||
-            id.includes('node_modules/@react-three/drei')
-          ) {
-            return 'three-addons'
-          }
-
-          // Animation libs (framer-motion, gsap) – ~185 KB
-          if (
-            id.includes('node_modules/framer-motion') ||
-            id.includes('node_modules/motion') ||
             id.includes('node_modules/gsap') ||
             id.includes('node_modules/@gsap')
           ) {
-            return 'animation-libs'
+            return 'gsap'
           }
 
-          // React ecosystem – ~33 KB
-          if (
-            id.includes('node_modules/react/') ||
-            id.includes('node_modules/react-dom/') ||
-            id.includes('node_modules/react-router-dom/') ||
-            id.includes('node_modules/react-router/') ||
-            id.includes('node_modules/react-scroll/')
-          ) {
-            return 'react-vendor'
-          }
-
-          // Catch-all remaining node_modules into a shared vendor
-          // chunk so app code stays tiny.
+          // Everything else from node_modules (React, React-DOM,
+          // react-router, framer-motion, @react-three/*, etc.)
+          // stays in one shared vendor chunk so React internals
+          // are always resolved correctly.
           if (id.includes('node_modules/')) {
-            return 'vendor-misc'
+            return 'vendor'
           }
         },
 
