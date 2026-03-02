@@ -1,1 +1,0 @@
-import{j as o}from"./three-addons-DaCil1SF.js";import{p as e,a as i}from"./index-D73u6ojj.js";import{m as n}from"./animation-libs-BFrdEE7p.js";function p({children:t,className:a=""}){return o.jsx(n.section,{className:`mt-20 flex flex-1 flex-col gap-12 ${a}`,initial:i.initial,animate:i.animate,exit:i.exit,transition:e,children:t})}export{p as P};
