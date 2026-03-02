@@ -1,9 +1,12 @@
 import { Link } from 'react-router-dom'
-import { memo } from 'react'
+import { lazy, memo } from 'react'
 
 import SplitText from './ui/SplitText'
 import LogoLoop from './ui/LogoLoop'
 import type { LogoItem } from './ui/LogoLoop'
+import SuspenseLoader from './ui/SuspenseLoader'
+import useIsMobileDevice from '../hooks/useIsMobileDevice'
+import fallbackPreview from '../assets/fatahh.png'
 
 const techStackLogos: LogoItem[] = [
   {
@@ -88,9 +91,71 @@ const techStackLogos: LogoItem[] = [
   },
 ]
 
+const SplineShowcase = lazy(() => import('./3DTeto'))
+
+const navLinks = [
+  { label: 'Work', href: '/work' },
+  { label: 'About', href: '/about' },
+  { label: 'Playground', href: '/playground' },
+  { label: 'Contact', href: '/contact' },
+]
+
 const HeroSection = memo(function HeroSection() {
+  const isMobile = useIsMobileDevice()
+
+  if (isMobile) {
+    return (
+      <div className="mt-14 flex flex-1 flex-col gap-6">
+        <div className="flex flex-col gap-4">
+          <h1 className="text-4xl font-bold leading-tight text-primary">
+            Web / App Developer from Indonesia 🇮🇩
+          </h1>
+          <p className="text-sm leading-relaxed text-primary/60">
+            Wsg! I'm MaJa / Bumi, I am a dev from Indonesia that is interested in Software Development Focused on Real Applications.
+          </p>
+        </div>
+
+        <div className="flex justify-center py-6">
+          <div className="relative h-64 w-64 overflow-hidden rounded-full border-4 border-primary/5 shadow-2xl shadow-emerald-500/10">
+            <img src={fallbackPreview} alt="Teto" className="h-full w-full object-cover" />
+          </div>
+        </div>
+
+        <nav className="grid grid-cols-2 gap-3">
+          {navLinks.map(({ label, href }) => (
+            <Link
+              key={label}
+              to={href}
+              className="group flex flex-col justify-between rounded-2xl border border-primary/5 bg-primary/5 p-5 transition hover:border-primary/10 active:scale-95 active:bg-primary/10"
+            >
+              <span className="mb-2 origin-left text-2xl opacity-80 transition-transform duration-300 group-hover:scale-110">
+                {label === 'Work' ? '💼' : label === 'About' ? '👤' : label === 'Playground' ? '🎮' : '✉️'}
+              </span>
+              <span className="font-semibold text-primary/90">{label}</span>
+            </Link>
+          ))}
+        </nav>
+
+        <section className="space-y-3 pt-4">
+          <h2 className="text-xs font-bold uppercase tracking-widest text-primary/30">Highlights</h2>
+          <div className="grid gap-3">
+            <div className="rounded-2xl border border-primary/5 bg-primary/5 p-5">
+              <h3 className="text-xs font-bold uppercase tracking-widest text-primary/50">Experience</h3>
+              <p className="mt-2 text-sm font-medium leading-relaxed text-primary/80">2+ years of building web apps and mobile apps.</p>
+            </div>
+            <div className="rounded-2xl border border-primary/5 bg-primary/5 p-5">
+              <h3 className="text-xs font-bold uppercase tracking-widest text-primary/50">Stack</h3>
+              <p className="mt-2 text-sm font-medium leading-relaxed text-primary/80">React · TypeScript · Three.js · Spline · Tailwind · HTML · CSS</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    )
+  }
+
   return (
-    <section className="z-10 flex max-w-xl flex-col gap-10">
+    <div className="mt-20 flex flex-1 flex-col gap-16 lg:flex-row lg:items-stretch">
+      <section className="z-10 flex max-w-xl flex-col gap-10">
       <SplitText
         text="Welcome!"
         tag="h2"
@@ -158,7 +223,12 @@ const HeroSection = memo(function HeroSection() {
           className="[--logoloop-fadeColorAuto:rgb(var(--color-surface))]"
         />
       </div>
-    </section>
+      </section>
+
+      <SuspenseLoader>
+        <SplineShowcase />
+      </SuspenseLoader>
+    </div>
   )
 })
 
