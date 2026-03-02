@@ -21,7 +21,7 @@ const projects: Project[] = [
 	{
 		title: '3DPortofolio',
 		description:
-			'A personal portfolio website showcasing 3D projects and interactive web experiences using React and Spline. The site you are on right now!',
+			'A personal portfolio website showcasing 3D projects and interactive web experiences using React. The site you are on right now!',
 		year: '2025',
 		link: 'https://maja.web.id/',
 		tags: ['React','TypeScript', 'Vite', 'Tailwind'],
