@@ -1,116 +1,162 @@
 import { Fragment } from 'react'
+import { motion } from 'framer-motion'
 import PageLayout from '../ui/PageLayout'
 
 const workflowSteps = [
 	{
-		step: 1,
+		step: '01',
+		title: 'Prototype',
 		text: 'Prototype rapidly in Copilot, Lovable, and other AI tools ensuring a robust boilerplate.',
 	},
 	{
-		step: 2,
+		step: '02',
+		title: 'Design',
 		text: 'Design responsive and clean UI structures for an aesthetically pleasing design.',
 	},
 	{
-		step: 3,
+		step: '03',
+		title: 'Develop',
 		text: 'Add in features and other components neccecary for launching the app, ensuring a feature-rich experience.',
 	},
 	{
-		step: 4,
+		step: '04',
+		title: 'Deploy',
 		text: 'Optimize, test, and deploy the app to production, ensuring a smooth user experience.',
 	},
 ]
 
 const milestones = [
 	{
-		year: '2008',
-		label: 'I was spawned in this world, blessing this world with my presence.',
+		year: '2024 - PRESENT',
+		title: 'Future Developer',
+		label: 'Started learning web development and fell in love with creating interactive experiences on the web.',
 	},
 	{
-		year: '2014',
+		year: '2014 - 2024',
+		title: 'The Spark',
 		label: 'Touched my first computer and was immedietly hooked on it, playing games and watching YouTube videos.',
 	},
 	{
-		year: '2024',
-		label: 'Started learning web development and fell in love with creating interactive experiences on the web.',
+		year: '2008 - 2014',
+		title: 'Respawn',
+		label: 'I was spawned in this world, blessing this world with my presence.',
 	},
 ]
 
 function AboutMe() {
 	return (
 		<PageLayout>
-			<header className="space-y-5">
-				<p className="text-xs uppercase tracking-[0.4em] text-primary/40">About</p>
-				<h1 className="text-3xl font-semibold text-primary sm:text-4xl">Professional Ctrl c + Ctrl v'er</h1>
-						<p className="max-w-3xl text-base text-primary/60 sm:text-lg">
+			<div className="mx-auto max-w-6xl px-4 py-20 text-white">
+				{/* Header Section */}
+				<header className="mb-32">
+					<div className="mb-8 inline-block rounded border border-white/20 px-3 py-1 text-xs uppercase tracking-widest text-white/70">
+						Role: Developer
+					</div>
+					
+					<h1 className="mb-12 text-[clamp(3rem,8vw,8rem)] font-bold leading-[0.9] tracking-tighter">
+						Professional<br />
+						<span className="text-transparent" style={{ WebkitTextStroke: '2px white' }}>Ctrl c +</span><br />
+						<span className="text-transparent" style={{ WebkitTextStroke: '2px white' }}>Ctrl v'er.</span>
+					</h1>
+
+					<div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
+						<p className="max-w-md text-lg text-white/70">
 							Hi, I&apos;m MaJa - a developer building web and mobile applications with AI, Born and raised in Indonesia I work and strive toward building software that reaches users worldwide.
-				</p>
-			</header>
+						</p>
+						<div className="flex flex-col gap-4 text-sm font-semibold uppercase tracking-widest text-white/80 md:w-48 border-l border-white/20 pl-6">
+							<div className="flex items-center gap-3">
+								<span className="text-xl">🛠</span>
+								<span>Engineering First</span>
+							</div>
+							<div className="flex items-center gap-3">
+								<span className="text-xl">⚡</span>
+								<span>Clean Architecture</span>
+							</div>
+						</div>
+					</div>
+				</header>
 
-			<section className="relative grid gap-8 overflow-hidden rounded-3xl border border-primary/10 bg-primary/5 p-8 shadow-neon-soft backdrop-blur">
-				{/* Decorative background glow */}
-				<div className="pointer-events-none absolute -top-24 left-1/2 h-48 w-3/4 -translate-x-1/2 rounded-full bg-primary/[0.06] blur-3xl" />
+				{/* How I Work Section */}
+				<section className="mb-32">
+					<div className="mb-12 flex items-center justify-between border-b mx-[-1rem] border-white/10 pb-4 md:mx-0">
+						<h2 className="text-4xl font-bold italic tracking-tighter sm:text-5xl">How I work.</h2>
+						<span className="text-xs uppercase tracking-widest text-white/40">Principles & Process</span>
+					</div>
 
-				<h2 className="text-xl font-semibold text-primary">How I work</h2>
-				<ol className="relative flex flex-col items-center gap-6 text-sm text-primary/60 lg:flex-row lg:items-center">
-					{workflowSteps.map((item, i) => (
-						<Fragment key={item.step}>
-							<li className="group relative flex w-full min-w-0 flex-1 gap-4 rounded-2xl border border-primary/10 bg-surface/40 p-5 transition-all duration-300 hover:border-primary/25 hover:bg-surface/60 hover:shadow-neon-hover lg:flex-col lg:gap-3">
-								{/* Step number badge */}
-								<span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-primary/20 bg-primary/10 text-xs font-bold text-primary/70 transition-colors duration-300 group-hover:border-primary/40 group-hover:bg-primary/20 group-hover:text-primary">
-									{item.step}
-								</span>
-								<p className="leading-relaxed">{item.text}</p>
-							</li>
-							{i < workflowSteps.length - 1 && (
-								<li className="flex shrink-0 items-center justify-center" aria-hidden="true">
-									{/* Right arrow – visible on desktop */}
-									<span className="hidden h-9 w-9 items-center justify-center rounded-full border border-primary/10 bg-primary/5 lg:flex">
-										<svg
-											xmlns="http://www.w3.org/2000/svg"
-											viewBox="0 0 24 24"
-											fill="none"
-											stroke="currentColor"
-											strokeWidth={2.5}
-											strokeLinecap="round"
-											strokeLinejoin="round"
-											className="h-4 w-4 text-primary/40"
-										>
-											<path d="M9 5l7 7-7 7" />
-										</svg>
-									</span>
-									{/* Down arrow – visible on mobile */}
-									<span className="flex h-9 w-9 items-center justify-center rounded-full border border-primary/10 bg-primary/5 lg:hidden">
-										<svg
-											xmlns="http://www.w3.org/2000/svg"
-											viewBox="0 0 24 24"
-											fill="none"
-											stroke="currentColor"
-											strokeWidth={2.5}
-											strokeLinecap="round"
-											strokeLinejoin="round"
-											className="h-4 w-4 text-primary/40"
-										>
-											<path d="M5 9l7 7 7-7" />
-										</svg>
-									</span>
-								</li>
-							)}
-						</Fragment>
-					))}
-				</ol>
-			</section>
+					<div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+						{workflowSteps.map((item) => (
+							<div
+								key={item.step}
+								className="group relative flex flex-col justify-between border border-white/10 bg-transparent p-8 transition-colors hover:border-white/30"
+							>
+								<div>
+									<span className="mb-8 block text-3xl font-bold text-white/20">{item.step}</span>
+									<h3 className="mb-4 text-xl font-bold">{item.title}</h3>
+									<p className="text-sm leading-relaxed text-white/60">{item.text}</p>
+								</div>
+								<div className="mt-12 text-2xl text-white/20 group-hover:text-white/60">
+									✦
+								</div>
+							</div>
+						))}
+					</div>
+				</section>
 
-			<section className="space-y-4">
-				<h2 className="text-xl font-semibold text-primary">Milestones</h2>
-				<ul className="space-y-3 text-sm text-primary/60">
-					{milestones.map(milestone => (
-						<li key={milestone.year} className="flex gap-4 rounded-2xl border border-primary/10 bg-primary/5 p-4">
-							<span className="text-xs font-semibold uppercase tracking-[0.35em] text-primary/45">{milestone.year}</span>
-							<p className="text-sm text-primary/70">{milestone.label}</p>
-						</li>
-					))}
-				</ul>
-			</section>
+				{/* Milestones Section */}
+				<section className="mb-32">
+					<h2 className="mb-16 text-4xl font-bold tracking-tighter sm:text-5xl">Milestones.</h2>
+					
+					<div className="relative mx-auto max-w-4xl">
+						{/* Vertical Line */}
+						<div className="absolute left-0 top-0 h-full w-[1px] bg-white/10 md:left-1/2 md:-ml-px"></div>
+
+						<div className="space-y-24">
+							{milestones.map((milestone, idx) => (
+								<motion.div 
+									key={idx} 
+									initial={{ opacity: 0, y: 60, filter: "blur(4px)" }}
+									whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+									viewport={{ once: true, margin: "-15%" }}
+									transition={{ duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }}
+									className={`relative flex items-center md:justify-between grid grid-cols-1 md:grid-cols-2 gap-8 ${idx % 2 === 0 ? 'md:text-left' : 'md:text-right'}`}
+								>
+									<div className={`hidden md:block ${idx % 2 === 0 ? 'order-2' : 'order-1'}`}></div>
+									
+									<div className={`relative ${idx % 2 === 0 ? 'order-1 md:pr-16 md:ml-auto md:w-full md:max-w-md' : 'order-2 md:pl-16 md:mr-auto md:w-full md:max-w-md'} pl-8 md:pl-0`}>
+										{/* Dot */}
+										<div className={`absolute top-6 h-3 w-3 rounded-full bg-white/40 ring-4 ring-black md:-top-1 ${idx % 2 === 0 ? '-left-1.5 md:right-[-0.3rem] md:left-auto' : '-left-1.5 md:-left-[-0.3rem]'} ${idx === 0 ? 'bg-white' : ''}`}></div>
+										
+										<div className="border border-white/10 bg-[#0a0a0a] p-8">
+											<span className="mb-4 block text-xs font-semibold uppercase tracking-widest text-white/40">
+												{milestone.year}
+											</span>
+											<h3 className="mb-2 text-xl font-bold">{milestone.title}</h3>
+											<p className="text-sm leading-relaxed text-white/60">{milestone.label}</p>
+										</div>
+									</div>
+								</motion.div>
+							))}
+						</div>
+					</div>
+				</section>
+
+				{/* CTA Section */}
+				<section className="py-32 text-center">
+					<h2 className="mb-6 text-[clamp(3rem,8vw,6rem)] font-bold leading-none tracking-tighter">
+						LET'S BUILD<br />SOMETHING EPIC.
+					</h2>
+					<p className="mx-auto mb-12 max-w-sm text-sm text-white/60">
+						I'm currently available for select freelance opportunities and full-time architecture roles.
+					</p>
+					<a
+						href="/contact"
+						className="group inline-flex items-center gap-3 border-b-2 border-white pb-2 text-sm font-bold uppercase tracking-widest transition-colors hover:text-white/60 hover:border-white/60"
+					>
+						Say Hello
+						<span className="transition-transform group-hover:translate-x-1">→</span>
+					</a>
+				</section>
+			</div>
 		</PageLayout>
 	)
 }
