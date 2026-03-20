@@ -212,7 +212,7 @@ function ProjectCard({
 				<a
 					href={project.link}
 					target={project.link.startsWith('http') ? '_blank' : undefined}
-					rel={project.link.startsWith('http') ? 'noreferrer' : undefined}
+					rel={project.link.startsWith('http') ? 'noreferrer noopener' : undefined}
 					className="mt-auto self-start rounded-full border border-primary/20 bg-primary/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-primary/70 transition hover:bg-primary/20"
 				>
 					View project

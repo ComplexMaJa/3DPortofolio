@@ -56,7 +56,7 @@ const SiteFooter = memo(function SiteFooter() {
             aria-label={label}
             title={label}
             className="group rounded-full p-2 text-primary/40 transition hover:text-primary/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary/50"
-            rel={href.startsWith('http') ? 'noreferrer' : undefined}
+            rel={href.startsWith('http') ? 'noreferrer noopener' : undefined}
             target={href.startsWith('http') ? '_blank' : undefined}
           >
             <Icon className="h-5 w-5 transition-colors duration-200 group-hover:text-primary/70" />
