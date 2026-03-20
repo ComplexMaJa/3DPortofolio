@@ -52,7 +52,7 @@ function AboutMe() {
 					<div className="mb-8 inline-block rounded border border-white/20 px-3 py-1 text-xs uppercase tracking-widest text-white/70">
 						Role: Developer
 					</div>
-					
+
 					<h1 className="mb-12 text-[clamp(3rem,8vw,8rem)] font-bold leading-[0.9] tracking-tighter">
 						Professional<br />
 						<span className="text-transparent" style={{ WebkitTextStroke: '2px white' }}>Ctrl c +</span><br />
@@ -105,15 +105,15 @@ function AboutMe() {
 				{/* Milestones Section */}
 				<section className="mb-32">
 					<h2 className="mb-16 text-4xl font-bold tracking-tighter sm:text-5xl">Milestones.</h2>
-					
+
 					<div className="relative mx-auto max-w-4xl">
 						{/* Vertical Line */}
 						<div className="absolute left-0 top-0 h-full w-[1px] bg-white/10 md:left-1/2 md:-ml-px"></div>
 
 						<div className="space-y-24">
 							{milestones.map((milestone, idx) => (
-								<motion.div 
-									key={idx} 
+								<motion.div
+									key={idx}
 									initial={{ opacity: 0, y: 60, filter: "blur(4px)" }}
 									whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
 									viewport={{ once: true, margin: "-15%" }}
@@ -121,11 +121,11 @@ function AboutMe() {
 									className={`relative flex items-center md:justify-between grid grid-cols-1 md:grid-cols-2 gap-8 ${idx % 2 === 0 ? 'md:text-left' : 'md:text-right'}`}
 								>
 									<div className={`hidden md:block ${idx % 2 === 0 ? 'order-2' : 'order-1'}`}></div>
-									
+
 									<div className={`relative ${idx % 2 === 0 ? 'order-1 md:pr-16 md:ml-auto md:w-full md:max-w-md' : 'order-2 md:pl-16 md:mr-auto md:w-full md:max-w-md'} pl-8 md:pl-0`}>
 										{/* Dot */}
 										<div className={`absolute top-6 h-3 w-3 rounded-full bg-white/40 ring-4 ring-black md:-top-1 ${idx % 2 === 0 ? '-left-1.5 md:right-[-0.3rem] md:left-auto' : '-left-1.5 md:-left-[-0.3rem]'} ${idx === 0 ? 'bg-white' : ''}`}></div>
-										
+
 										<div className="border border-white/10 bg-[#0a0a0a] p-8">
 											<span className="mb-4 block text-xs font-semibold uppercase tracking-widest text-white/40">
 												{milestone.year}
