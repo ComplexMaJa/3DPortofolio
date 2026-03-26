@@ -1,6 +1,6 @@
-import { Fragment } from 'react'
 import { motion } from 'framer-motion'
 import PageLayout from '../ui/PageLayout'
+import BorderGlow from '../ui/BorderGlow'
 
 const workflowSteps = [
 	{
@@ -26,22 +26,29 @@ const workflowSteps = [
 ]
 
 const milestones = [
-	{
-		year: '2024 - PRESENT',
-		title: 'Future Developer',
-		label: 'Started learning web development and fell in love with creating interactive experiences on the web.',
-	},
-	{
-		year: '2014 - 2024',
-		title: 'The Spark',
-		label: 'Touched my first computer and was immedietly hooked on it, playing games and watching YouTube videos.',
-	},
+
 	{
 		year: '2008 - 2014',
 		title: 'Respawn',
 		label: 'I was spawned in this world, blessing this world with my presence.',
 	},
+
+	{
+		year: '2014 - 2024',
+		title: 'The Spark',
+		label: 'Touched my first computer and was immedietly hooked on it, playing games and watching YouTube videos.',
+	},
+
+	{
+		year: '2024 - PRESENT',
+		title: 'Future Developer',
+		label: 'Started learning web development and fell in love with creating interactive experiences on the web.',
+	},
 ]
+
+/** Shared glow palette — monochromatic white/silver to match the site's dark aesthetic */
+const GLOW_COLORS = ['#ffffff', '#a0a0a0', '#666666']
+const GLOW_HSL = '0 0 90' // neutral white glow
 
 function AboutMe() {
 	return (
@@ -85,19 +92,30 @@ function AboutMe() {
 
 					<div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
 						{workflowSteps.map((item) => (
-							<div
+							<BorderGlow
 								key={item.step}
-								className="group relative flex flex-col justify-between border border-white/10 bg-transparent p-8 transition-colors hover:border-white/30"
+								className="h-full"
+								backgroundColor="#0a0a0a"
+								borderRadius={12}
+								glowColor={GLOW_HSL}
+								glowIntensity={0.6}
+								glowRadius={30}
+								colors={GLOW_COLORS}
+								fillOpacity={0.3}
+								coneSpread={20}
+								edgeSensitivity={25}
 							>
-								<div>
-									<span className="mb-8 block text-3xl font-bold text-white/20">{item.step}</span>
-									<h3 className="mb-4 text-xl font-bold">{item.title}</h3>
-									<p className="text-sm leading-relaxed text-white/60">{item.text}</p>
+								<div className="group flex flex-col justify-between p-8 h-full">
+									<div>
+										<span className="mb-8 block text-3xl font-bold text-white/20">{item.step}</span>
+										<h3 className="mb-4 text-xl font-bold">{item.title}</h3>
+										<p className="text-sm leading-relaxed text-white/60">{item.text}</p>
+									</div>
+									<div className="mt-12 text-2xl text-white/20 group-hover:text-white/60 transition-colors">
+										✦
+									</div>
 								</div>
-								<div className="mt-12 text-2xl text-white/20 group-hover:text-white/60">
-									✦
-								</div>
-							</div>
+							</BorderGlow>
 						))}
 					</div>
 				</section>
@@ -126,13 +144,25 @@ function AboutMe() {
 										{/* Dot */}
 										<div className={`absolute top-6 h-3 w-3 rounded-full bg-white/40 ring-4 ring-black md:-top-1 ${idx % 2 === 0 ? '-left-1.5 md:right-[-0.3rem] md:left-auto' : '-left-1.5 md:-left-[-0.3rem]'} ${idx === 0 ? 'bg-white' : ''}`}></div>
 
-										<div className="border border-white/10 bg-[#0a0a0a] p-8">
-											<span className="mb-4 block text-xs font-semibold uppercase tracking-widest text-white/40">
-												{milestone.year}
-											</span>
-											<h3 className="mb-2 text-xl font-bold">{milestone.title}</h3>
-											<p className="text-sm leading-relaxed text-white/60">{milestone.label}</p>
-										</div>
+										<BorderGlow
+											backgroundColor="#060606"
+											borderRadius={12}
+											glowColor={GLOW_HSL}
+											glowIntensity={0.5}
+											glowRadius={25}
+											colors={GLOW_COLORS}
+											fillOpacity={0.25}
+											coneSpread={18}
+											edgeSensitivity={30}
+										>
+											<div className="p-8">
+												<span className="mb-4 block text-xs font-semibold uppercase tracking-widest text-white/40">
+													{milestone.year}
+												</span>
+												<h3 className="mb-2 text-xl font-bold">{milestone.title}</h3>
+												<p className="text-sm leading-relaxed text-white/60">{milestone.label}</p>
+											</div>
+										</BorderGlow>
 									</div>
 								</motion.div>
 							))}
