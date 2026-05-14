@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion'
 import PageLayout from '../ui/PageLayout'
 import BorderGlow from '../ui/BorderGlow'
+import ShinyText from '../ui/ShinyText'
+import ScrollFloat from '../ui/ScrollFloat'
 
 const workflowSteps = [
 	{
@@ -172,9 +174,15 @@ function AboutMe() {
 
 				{/* CTA Section */}
 				<section className="py-32 text-center">
-					<h2 className="mb-6 text-[clamp(3rem,8vw,6rem)] font-bold leading-none tracking-tighter">
-						LET'S BUILD<br />SOMETHING EPIC.
-					</h2>
+					<ScrollFloat
+						containerClassName="mb-6 font-bold leading-none tracking-tighter !my-0"
+						textClassName="!text-[clamp(3rem,8vw,6rem)] !leading-none flex flex-col items-center"
+						animationDuration={1}
+						stagger={0.1}
+					>
+						<ShinyText text="LET'S BUILD" speed={3} color="#ffffff" shineColor="#888888" className="block" />
+						<ShinyText text="SOMETHING EPIC." speed={3} delay={0.2} color="#ffffff" shineColor="#888888" className="block" />
+					</ScrollFloat>
 					<p className="mx-auto mb-12 max-w-sm text-sm text-white/60">
 						I'm currently available for select freelance opportunities and full-time architecture roles.
 					</p>

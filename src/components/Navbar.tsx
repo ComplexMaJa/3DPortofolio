@@ -3,6 +3,7 @@ import { memo } from 'react'
 
 import GooeyNav from './ui/GooeyNav'
 import ThemeToggle from './ui/ThemeToggle'
+import tetoyukkur from "../assets/teto_yukkur.gif"
 
 export type NavLink = {
   label: string
@@ -19,7 +20,7 @@ const Navbar = memo(function Navbar({ links }: NavbarProps) {
       <Link className="group inline-flex items-center gap-3" to="/" aria-label="Navigate to home">
         <div className="grid h-10 w-10 place-content-center overflow-hidden rounded-full bg-primary/10 transition group-hover:bg-primary/20">
           <img
-            src="https://i.redd.it/7wqxmrey0ewe1.gif"
+            src={tetoyukkur}
             alt="MJ Logo"
             className="h-10 w-10 object-cover"
             loading="eager"
