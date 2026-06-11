@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { Cpu, Palette, Code, Rocket } from 'lucide-react'
 import PageLayout from '../ui/PageLayout'
 import BorderGlow from '../ui/BorderGlow'
 import ShinyText from '../ui/ShinyText'
@@ -9,21 +10,25 @@ const workflowSteps = [
 		step: '01',
 		title: 'Prototype',
 		text: 'Prototype rapidly in Copilot, Lovable, and other AI tools ensuring a robust boilerplate.',
+		icon: Cpu,
 	},
 	{
 		step: '02',
 		title: 'Design',
 		text: 'Design responsive and clean UI structures for an aesthetically pleasing design.',
+		icon: Palette,
 	},
 	{
 		step: '03',
 		title: 'Develop',
 		text: 'Add in features and other components neccecary for launching the app, ensuring a feature-rich experience.',
+		icon: Code,
 	},
 	{
 		step: '04',
 		title: 'Deploy',
 		text: 'Optimize, test, and deploy the app to production, ensuring a smooth user experience.',
+		icon: Rocket,
 	},
 ]
 
@@ -107,9 +112,12 @@ function AboutMe() {
 								coneSpread={20}
 								edgeSensitivity={25}
 							>
-								<div className="group flex flex-col justify-between p-8 h-full">
+								<div className="group flex flex-col justify-between p-8 h-full relative overflow-hidden">
 									<div>
-										<span className="mb-8 block text-3xl font-bold text-white/20">{item.step}</span>
+										<div className="flex justify-between items-center mb-8">
+											<span className="text-3xl font-bold text-white/20">{item.step}</span>
+											<item.icon className="h-6 w-6 text-white/30 group-hover:text-white/80 group-hover:scale-110 transition-all duration-300" />
+										</div>
 										<h3 className="mb-4 text-xl font-bold">{item.title}</h3>
 										<p className="text-sm leading-relaxed text-white/60">{item.text}</p>
 									</div>
