@@ -35,6 +35,12 @@
     @apply selection:bg-primary/20 selection:text-primary;
   }
 
+  html,
+  body {
+    overflow-x: hidden;
+    width: 100%;
+  }
+
   body {
     @apply m-0 min-h-screen bg-surface text-primary font-["Space_Grotesk",sans-serif] antialiased;
     background-color: rgb(var(--color-surface));

@@ -62,20 +62,23 @@ const GLOW_HSL = '0 84 60' // red glow HSL
 
 function AboutMe() {
 	return (
-		<PageLayout className="!mt-0">
-			<div className="mx-auto max-w-6xl px-4 pt-0 pb-20 text-primary">
+		<PageLayout className="!mt-0 relative">
+			<div className="mx-auto max-w-7xl px-4 pt-0 pb-20 text-primary">
 				{/* Scroll Velocity Text Banner */}
-				<div className="mb-5 w-screen relative left-[calc(50%-50vw)] overflow-hidden py-6 select-none z-10">
+				<div className="absolute top-0 left-[calc(50%-50vw)] w-screen overflow-hidden py-2 select-none z-10">
 					<ScrollVelocity
 						texts={[
 							<span key="teto" className="text-red-500 font-black uppercase">Teto</span>,
 							<span key="bumi" className="text-white font-black uppercase light-maja-text">MaJa</span>
 						]}
 						velocity={320}
-						numCopies={12}
-						className="text-5xl md:text-8xl tracking-[-0.04em] pr-8 md:pr-16"
+						numCopies={40}
+						className="text-3xl md:text-5xl tracking-[-0.04em] pr-6 md:pr-10"
+						scrollerClassName="!text-3xl md:!text-5xl !leading-none md:!leading-none"
 					/>
 				</div>
+				{/* Spacer to prevent overlap since the banner is absolutely positioned */}
+				<div className="h-[46px] md:h-[64px] mb-8" />
 
 				{/* Header Section */}
 				<header className="mb-32 relative grid grid-cols-1 lg:grid-cols-12 gap-12 items-center min-h-[500px]">
