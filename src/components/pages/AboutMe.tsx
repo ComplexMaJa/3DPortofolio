@@ -56,9 +56,9 @@ const milestones = [
 	},
 ]
 
-/** Shared glow palette — monochromatic white/silver to match the site's dark aesthetic */
-const GLOW_COLORS = ['#ffffff', '#a0a0a0', '#666666']
-const GLOW_HSL = '0 0 90' // neutral white glow
+/** Shared glow palette — red shades matching the brand color */
+const GLOW_COLORS = ['#ef4444', '#f87171', '#b91c1c']
+const GLOW_HSL = '0 84 60' // red glow HSL
 
 function AboutMe() {
 	return (
@@ -122,7 +122,10 @@ function AboutMe() {
 				<section className="mb-32">
 					<div className="mb-12 flex items-center justify-between border-b mx-[-1rem] border-primary/10 pb-4 md:mx-0">
 						<h2 className="text-4xl font-bold italic tracking-tighter sm:text-5xl">How I work.</h2>
-						<span className="text-xs uppercase tracking-widest text-primary/40">Principles & Process</span>
+						<span className="text-xs uppercase tracking-widest text-primary/40 flex items-center gap-1.5">
+							Principles & Process
+							<span className="h-1.5 w-1.5 rounded-full bg-red-500 light-principles-dot inline-block" />
+						</span>
 					</div>
 
 					<div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
@@ -130,7 +133,7 @@ function AboutMe() {
 							<BorderGlow
 								key={item.step}
 								className="h-full about-card"
-								backgroundColor="#0a0a0a"
+								backgroundColor="var(--workflow-card-bg)"
 								borderRadius={12}
 								glowColor={GLOW_HSL}
 								glowIntensity={0.6}
@@ -143,7 +146,7 @@ function AboutMe() {
 								<div className="group flex flex-col justify-between p-8 h-full relative overflow-hidden">
 									<div>
 										<div className="flex justify-between items-center mb-8">
-											<span className="text-3xl font-bold text-white/20">{item.step}</span>
+											<span className="text-3xl font-bold text-white">{item.step}</span>
 											<item.icon className="h-6 w-6 text-white/30 group-hover:text-white/80 group-hover:scale-110 transition-all duration-300" />
 										</div>
 										<h3 className="mb-4 text-xl font-bold text-white">{item.title}</h3>
@@ -179,11 +182,14 @@ function AboutMe() {
 									<div className={`hidden md:block ${idx % 2 === 0 ? 'order-2' : 'order-1'}`}></div>
 
 									<div className={`relative ${idx % 2 === 0 ? 'order-1 md:pr-16 md:ml-auto md:w-full md:max-w-md' : 'order-2 md:pl-16 md:mr-auto md:w-full md:max-w-md'} pl-8 md:pl-0`}>
+										{/* Connector Line (Desktop Only) */}
+										<div className={`hidden md:block absolute top-1/2 -translate-y-1/2 h-[1px] timeline-connector ${idx % 2 === 0 ? 'right-0 w-16' : 'left-0 w-16'}`} />
+
 										{/* Dot */}
-										<div className={`absolute top-6 h-3 w-3 rounded-full bg-white/40 light-timeline-dot ring-4 ring-black md:-top-1 ${idx % 2 === 0 ? '-left-1.5 md:right-[-0.3rem] md:left-auto' : '-left-1.5 md:-left-[-0.3rem]'} ${idx === 0 ? 'bg-white' : ''}`}></div>
+										<div className={`absolute top-6 h-3 w-3 rounded-full bg-white/40 light-timeline-dot ring-4 ring-black md:top-1/2 md:-translate-y-1/2 ${idx % 2 === 0 ? '-left-1.5 md:right-[-0.375rem] md:left-auto' : '-left-1.5 md:left-[-0.375rem]'} ${idx === 0 ? 'bg-white' : ''}`}></div>
 
 										<BorderGlow
-											backgroundColor="#060606"
+											backgroundColor="var(--milestone-card-bg)"
 											borderRadius={12}
 											glowColor={GLOW_HSL}
 											glowIntensity={0.5}

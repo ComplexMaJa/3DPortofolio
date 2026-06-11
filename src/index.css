@@ -13,6 +13,9 @@
     color-scheme: dark;
     --shiny-text-base: #ffffff;
     --shiny-text-shine: #888888;
+    --workflow-card-bg: #000000;  /* AMOLED black */
+    --milestone-card-bg: #000000; /* AMOLED black */
+    --card-bg: #000000;           /* AMOLED black */
   }
 
   :root.light {
@@ -23,6 +26,9 @@
     color-scheme: light;
     --shiny-text-base: #181818;
     --shiny-text-shine: #ef4444;
+    --workflow-card-bg: #15171a;  /* Premium graphite/charcoal */
+    --milestone-card-bg: #15171a; /* Premium graphite/charcoal */
+    --card-bg: #15171a;           /* Premium graphite/charcoal */
   }
 
   * {
@@ -86,12 +92,84 @@ html.theme-transition *::after {
   text-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-/* Premium shadows & borders for How I Work / Milestone cards in light mode */
-.light .about-card {
-  border-color: rgba(24, 24, 24, 0.12) !important;
+/* Premium shadows & borders for How I Work / Milestone cards in both modes */
+.about-card {
+  background: var(--card-bg) !important;
+  border-color: rgba(255, 255, 255, 0.05) !important;
   box-shadow: 
-    0 20px 40px rgba(0, 0, 0, 0.18), 
-    0 5px 15px rgba(0, 0, 0, 0.08) !important;
+    0 16px 36px rgba(0, 0, 0, 0.22), 
+    0 6px 14px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), 
+              box-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), 
+              border-color 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+}
+
+/* Card hover states for premium integration */
+.about-card:hover {
+  transform: translateY(-4px) translateZ(0) !important;
+  border-color: rgba(239, 68, 68, 0.25) !important; /* Subtle red accent border on hover */
+  box-shadow: 
+    0 24px 48px rgba(239, 68, 68, 0.08), 
+    0 10px 24px rgba(0, 0, 0, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+}
+
+/* Red accents inside cards in both modes */
+.about-card svg:not(.card-arrow svg) {
+  color: #ef4444 !important;
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+.about-card:hover svg:not(.card-arrow svg) {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.about-card h3 {
+  transition: color 0.3s ease;
+}
+.about-card:hover h3 {
+  color: #fca5a5 !important; /* light red accent on title hover */
+}
+
+/* Milestone date in bold red */
+.about-card span.uppercase {
+  color: #ef4444 !important;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  opacity: 0.9;
+  transition: color 0.3s ease;
+}
+
+/* Circular Arrow treatment */
+.card-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 9999px;
+  border: 1.5px solid rgba(239, 68, 68, 0.35) !important;
+  background: rgba(0, 0, 0, 0.15) !important;
+  color: #ef4444 !important;
+  opacity: 0.85;
+  transition: all 0.3s ease !important;
+}
+.card-arrow svg {
+  width: 16px !important;
+  height: 16px !important;
+  color: #ef4444 !important;
+  transition: transform 0.3s ease;
+}
+.about-card:hover .card-arrow {
+  opacity: 1;
+  border-color: #ef4444 !important;
+  background: rgba(239, 68, 68, 0.1) !important;
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.2);
+}
+.about-card:hover .card-arrow svg {
+  transform: translateX(2px);
 }
 
 /* Bottom CTA premium button overrides for light mode */
@@ -111,10 +189,35 @@ html.theme-transition *::after {
   box-shadow: 0 6px 20px rgba(239, 68, 68, 0.35) !important;
 }
 
-/* Light mode timeline dot */
-.light .light-timeline-dot {
+/* Timeline vertical connector line */
+.timeline-connector {
+  display: block !important;
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  z-index: -1;
+}
+.light .timeline-connector {
+  background-color: rgba(24, 24, 24, 0.08) !important;
+}
+
+/* Timeline dot - red dot with gap and red glow ring */
+.light-timeline-dot {
   background-color: #ef4444 !important;
-  box-shadow: 0 0 0 4px rgb(229, 229, 229) !important;
+  box-shadow: 
+    0 0 0 4px #000000, 
+    0 0 0 6px rgba(239, 68, 68, 0.25),
+    0 2px 4px rgba(0, 0, 0, 0.05) !important;
+}
+.light .light-timeline-dot {
+  box-shadow: 
+    0 0 0 4px #f4f4f1, 
+    0 0 0 6px rgba(239, 68, 68, 0.25),
+    0 2px 4px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Principles dot */
+.light-principles-dot {
+  display: inline-block !important;
+  background-color: #ef4444 !important;
 }
 
 /* Light mode teto banner shadow */
