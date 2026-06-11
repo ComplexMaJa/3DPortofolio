@@ -28,6 +28,18 @@ const navLinks = [
   { label: 'Contact', href: '/contact' },
 ]
 
+const AnimatedPage = ({ children }: { children: React.ReactNode }) => (
+  <motion.main
+    className="flex flex-1 flex-col"
+    initial={pageMotion.initial}
+    animate={pageMotion.animate}
+    exit={pageMotion.exit}
+    transition={pageTransition}
+  >
+    {children}
+  </motion.main>
+)
+
 function App() {
   const location = useLocation()
 
@@ -41,75 +53,17 @@ function App() {
             <Route
               path="/"
               element={
-                <motion.main
-                  className="flex flex-1 flex-col"
-                  initial={pageMotion.initial}
-                  animate={pageMotion.animate}
-                  exit={pageMotion.exit}
-                  transition={pageTransition}
-                >
+                <AnimatedPage>
                   <SuspenseLoader className="mt-32">
                     <HeroSection />
                   </SuspenseLoader>
-                </motion.main>
+                </AnimatedPage>
               }
             />
-            <Route
-              path="/work"
-              element={
-                <motion.main
-                  className="flex flex-1 flex-col"
-                  initial={pageMotion.initial}
-                  animate={pageMotion.animate}
-                  exit={pageMotion.exit}
-                  transition={pageTransition}
-                >
-                  <Work />
-                </motion.main>
-              }
-            />
-            <Route
-              path="/about"
-              element={
-                <motion.main
-                  className="flex flex-1 flex-col"
-                  initial={pageMotion.initial}
-                  animate={pageMotion.animate}
-                  exit={pageMotion.exit}
-                  transition={pageTransition}
-                >
-                  <AboutMe />
-                </motion.main>
-              }
-            />
-            <Route
-              path="/playground"
-              element={
-                <motion.main
-                  className="flex flex-1 flex-col"
-                  initial={pageMotion.initial}
-                  animate={pageMotion.animate}
-                  exit={pageMotion.exit}
-                  transition={pageTransition}
-                >
-                  <Playground />
-                </motion.main>
-              }
-            />
-            <Route
-              path="/contact"
-              element={
-                <motion.main
-                  className="flex flex-1 flex-col"
-                  initial={pageMotion.initial}
-                  animate={pageMotion.animate}
-                  exit={pageMotion.exit}
-                  transition={pageTransition}
-                >
-                  <Contact />
-                </motion.main>
-              }
-            />
+            <Route path="/work" element={<AnimatedPage><Work /></AnimatedPage>} />
+            <Route path="/about" element={<AnimatedPage><AboutMe /></AnimatedPage>} />
+            <Route path="/playground" element={<AnimatedPage><Playground /></AnimatedPage>} />
+            <Route path="/contact" element={<AnimatedPage><Contact /></AnimatedPage>} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </AnimatePresence>

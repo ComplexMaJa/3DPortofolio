@@ -160,7 +160,7 @@ const HeroSection = memo(function HeroSection() {
             pauseOnHover
             fadeOut
             ariaLabel="Tech stack logos"
-            className="[--logoloop-fadeColorAuto:rgb(var(--color-surface))]"
+            className="[--logoloop-fadeColorAuto:rgb(var(--color-surface))] tech-stack-loop"
           />
         </div>
       </div>
@@ -234,7 +234,7 @@ const HeroSection = memo(function HeroSection() {
           pauseOnHover
           fadeOut
           ariaLabel="Tech stack logos"
-          className="[--logoloop-fadeColorAuto:rgb(var(--color-surface))]"
+          className="[--logoloop-fadeColorAuto:rgb(var(--color-surface))] tech-stack-loop"
         />
       </div>
       </section>
