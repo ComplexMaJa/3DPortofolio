@@ -11,14 +11,18 @@
     --blend-nav: lighten;
     --step-inactive-bg: #222222;
     color-scheme: dark;
+    --shiny-text-base: #ffffff;
+    --shiny-text-shine: #888888;
   }
 
   :root.light {
-    --color-surface: 255 255 255;
-    --color-primary: 0 0 0;
+    --color-surface: 244 244 241; /* #f4f4f1 */
+    --color-primary: 24 24 24;    /* #181818 */
     --blend-nav: darken;
     --step-inactive-bg: #e5e5e5;
     color-scheme: light;
+    --shiny-text-base: #181818;
+    --shiny-text-shine: #ef4444;
   }
 
   * {
@@ -55,6 +59,91 @@ html.theme-transition *::after {
   background-repeat: no-repeat, no-repeat;
 }
 
+/* Light mode premium app background overrides */
 .light .app-bg {
-  background-blend-mode: multiply, multiply;
+  background-color: rgb(var(--color-surface)) !important;
+  background-image:
+    radial-gradient(circle at top, rgba(239, 68, 68, 0.07) 0%, rgba(239, 68, 68, 0) 70%),
+    linear-gradient(115deg, rgba(24, 24, 24, 0.03) 0%, rgba(24, 24, 24, 0.01) 50%, transparent 100%) !important;
+  background-blend-mode: normal !important;
 }
+
+/* Light mode heading outline stroke */
+.outline-stroke {
+  -webkit-text-stroke: 2px #ffffff;
+}
+.light .outline-stroke {
+  -webkit-text-stroke: 2px #181818;
+}
+
+/* Light mode marquee MAJA text stroke */
+.light-maja-text {
+  text-shadow: 0 1px 1px hsl(205deg 30% 10% / 0.1);
+}
+.light .light-maja-text {
+  color: #ffffff !important;
+  -webkit-text-stroke: 1.5px rgba(24, 24, 24, 0.35);
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Premium shadows & borders for How I Work / Milestone cards in light mode */
+.light .about-card {
+  border-color: rgba(24, 24, 24, 0.12) !important;
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.18), 
+    0 5px 15px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Bottom CTA premium button overrides for light mode */
+.light .cta-link {
+  background-color: #181818 !important;
+  color: #ffffff !important;
+  border: 1px solid #181818 !important;
+  border-radius: 9999px !important;
+  padding: 0.75rem 2rem !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+}
+.light .cta-link:hover {
+  background-color: #ef4444 !important;
+  border-color: #ef4444 !important;
+  color: #ffffff !important;
+  box-shadow: 0 6px 20px rgba(239, 68, 68, 0.35) !important;
+}
+
+/* Light mode timeline dot */
+.light .light-timeline-dot {
+  background-color: #ef4444 !important;
+  box-shadow: 0 0 0 4px rgb(229, 229, 229) !important;
+}
+
+/* Light mode teto banner shadow */
+.light .teto-banner-wrapper {
+  box-shadow: 0 0 80px rgba(239, 68, 68, 0.12);
+}
+
+/* Light mode footer overrides */
+.light footer.site-footer {
+  color: rgba(24, 24, 24, 0.6) !important;
+}
+
+.light footer.site-footer a {
+  color: rgba(24, 24, 24, 0.5) !important;
+}
+
+.light footer.site-footer a:hover {
+  color: #ef4444 !important;
+}
+
+.light footer.site-footer a:hover svg {
+  color: #ef4444 !important;
+}
+
+/* Light mode logo loop fade gradient fix */
+.light .tech-stack-loop {
+  --logoloop-fadeColor: #f4f4f1 !important;
+  --logoloop-fadeColorAuto: #f4f4f1 !important;
+}
+
+
+
